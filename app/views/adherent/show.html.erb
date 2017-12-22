@@ -1,0 +1,24 @@
+<h1>Mon Profile : <%= link_to adherent_edit_path  do %>
+  <i class="fa fa-pencil" aria-hidden="true"></i>
+  <% end %></h1>
+<div class="myflex">
+  <div class="mycard">
+    <table>
+      <tr>
+        <td>Email</td>
+        <td><%= current_user.email %></td>
+      </tr>
+      <tr>
+        <td>Nom</td>
+        <td><%= current_user.first_name %></td>
+      </tr>
+      <tr>
+        <td>Prénom</td>
+        <td><%= current_user.last_name %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="mycard">
+
+  </div>
+</div>
