@@ -26,9 +26,18 @@
   border-radius: 5px;
   border: 1px solid #222;
   margin: 10px;
-  padding: 10px;
+  padding: 20px;
   box-shadow: 1px 1px 1px #222;
 }
-.col {
+.twocol {
   width: 50%;
+}
+.tiercol {
+  width: 30%;
+}
+.restcol {
+  width: 70%;
+}
+input {
+  padding: 5px;
 }

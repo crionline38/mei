@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'adherent/index'
-  get 'adherent/show'
-  get 'adherent/edit'
-
+  resources :adherent
 
   devise_for :users
   root to: 'pages#home'

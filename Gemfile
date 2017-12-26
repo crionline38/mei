@@ -12,6 +12,7 @@ gem 'devise'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
+gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form'

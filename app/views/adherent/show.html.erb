@@ -1,24 +1,17 @@
-<h1>Mon Profile : <%= link_to adherent_edit_path  do %>
-  <i class="fa fa-pencil" aria-hidden="true"></i>
-  <% end %></h1>
 <div class="myflex">
   <div class="mycard">
-    <table>
-      <tr>
-        <td>Email</td>
-        <td><%= current_user.email %></td>
-      </tr>
-      <tr>
-        <td>Nom</td>
-        <td><%= current_user.first_name %></td>
-      </tr>
-      <tr>
-        <td>Prénom</td>
-        <td><%= current_user.last_name %></td>
-      </tr>
-    </table>
+    <h3><%= @adherent.first_name %> <%= @adherent.last_name %> (<%= @adherent.function.name %>)</h3>
+    <%= link_to edit_adherent_path  do %>
+      <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+    <% end %>
+    <p><%= @adherent.address %><br/>
+    <%= @adherent.address2 %><br/>
+    <%= @adherent.zipcode %> <%= @adherent.city %></p>
+    <p>Email : <%= @adherent.email %><br/>
+    Téléphone : <%= @adherent.tel1 %><br/>
+    Téléphone 2 : <%= @adherent.tel2 %></p>
   </div>
-  <div class="mycard">
-
+  <div class="mycard mygrow">
+    <h3>Elèves : </h3>
   </div>
 </div>

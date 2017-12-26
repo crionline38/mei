@@ -1,2 +1,16 @@
-<h1>Adherent#index</h1>
-<p>Find me in app/views/adherent/index.html.erb</p>
+<h1>Liste d'adhérents</h1> <%= link_to "new", new_adherent_path  %>
+<table>
+   <tr>
+     <th>Prénom</th>
+     <th>Nom</th>
+     <th>Fonction</th>
+   </tr>
+  <% @adherents.each do |adherent| %>
+    <tr class="mycard">
+      <td><%= adherent.first_name %></td>
+      <td><%= adherent.last_name %></td>
+      <td><%= adherent.function.name %></td>
+      <td><%= link_to adherent_path(adherent) do %><i class="fa fa-info-circle" aria-hidden="true"></i><% end %></td>
+    </tr>
+  <% end %>
+</table>
