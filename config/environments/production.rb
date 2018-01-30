@@ -60,6 +60,20 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "mei_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
+
+config.action_mailer.default_url_options = { :host => 'http://localhost', port: 3000 }
+config.action_mailer.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+  :user_name            => ENV['SENDGRID_USERNAME'],
+  :password             => ENV['SENDGRID_PASSWORD'],
+  :address              => "smtp.sendgrid.net",
+  :port                 => 587,
+  :enable_starttls_auto => true,
+  :authentication       => :plain,
+  :domain               => "http://localhost:3000"
+}
+
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

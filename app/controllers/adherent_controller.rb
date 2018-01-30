@@ -21,7 +21,6 @@ class AdherentController < ApplicationController
 
   def update
     myparams = adherent_params
-    p myparams
     @adherent.first_name = myparams["first_name"]
     @adherent.last_name = myparams["last_name"]
     @adherent.address = myparams["address"]
