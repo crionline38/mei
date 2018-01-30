@@ -1,0 +1,82 @@
+
+#toast-container {
+  top: 75px !important;
+  right:0px !important;
+  cursor: pointer;
+}
+
+.toast-action {
+  color: white !important;
+}
+
+body {
+  font-family: 'Kalam', cursive;
+  background-color: $body-back;
+  font-size: 20px;
+}
+
+h1, h2 {
+  font-family: 'Concert One', cursive;
+}
+
+
+label {
+  font-size: 25px !important;
+}
+
+.myflex {
+  display: flex;
+  justify-content: space-between;
+}
+.mygrow {
+  flex-grow:1;
+}
+.mycard {
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #222;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 1px 1px 1px #222;
+}
+.myalign {
+  align-items: center;
+}
+.padding {
+  padding: 40px !important;
+}
+.separator {
+  border-right: 1px solid #ddd;
+}
+.twocol {
+  width: 50%;
+}
+.tiercol {
+  width: 30%;
+}
+.restcol {
+  width: 70%;
+}
+input {
+  padding: 5px;
+  font-size: 1.2em !important;
+}
+.center {
+  text-align: center;
+}
+
+.btn {
+  background-color: $action !important;
+}
+
+.help-block {
+  color: red !important;
+}
+.hidden {
+  display:none;
+}
+select {
+  display: block !important;
+  font-size: 1.4em !important;
+  margin: 10px !important;
+}

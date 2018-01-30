@@ -1,2 +1,15 @@
-<h1>Adherent#edit</h1>
-<p>Find me in app/views/adherent/edit.html.erb</p>
+<div class="row mycard">
+  <h4>Edit adhérent</h4>
+  <%= simple_form_for @adherent, :url => adherent_path, :method => :put do |f| %>
+    <% @f=f %>
+    <%= @f.error_notification %>
+
+    <div class="form-inputs">
+      <%= render 'form' %>
+    </div>
+    <div class="form-actions">
+      <%= @f.button :submit, "Enregistrer" %>
+    </div>
+
+  <% end %>
+</div>

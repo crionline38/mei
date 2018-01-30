@@ -1,14 +1,17 @@
-
-<!-- app/views/shared/_flashes.html.erb -->
 <% if notice %>
-  <div class="alert alert-info alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= notice %>
-  </div>
+  <script type="text/javascript">
+    var $toastContent = $('<span><%= notice %></span>').add($('<button class="btn-flat toast-action"><i class="fa fa-times" aria-hidden="true"></i></button>'));
+    Materialize.toast($toastContent, 4000, 'blue rounded');
+  </script>
 <% end %>
+
+
 <% if alert %>
-  <div class="alert alert-warning alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%= alert %>
-  </div>
+
+  <script type="text/javascript">
+    var $toastContent = $('<span><%= alert %></span>').add($('<button class="btn-flat toast-action"><i class="fa fa-times" aria-hidden="true"></i></button>'));
+    Materialize.toast($toastContent, 4000, 'red rounded');
+  </script>
 <% end %>
+
+

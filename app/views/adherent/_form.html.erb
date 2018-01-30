@@ -1,0 +1,30 @@
+
+        <div class="myflex">
+          <div class="twocol">
+            <%= @f.input :first_name, label: 'Nom', required: true %>
+          </div>
+          <div class="twocol">
+            <%= @f.input :last_name, label: 'Prénom', required: true %>
+          </div>
+        </div>
+        <%= @f.input :address, label: 'Adresse', required: true  %>
+        <%= @f.input :address2, label: 'Adresse 2' %>
+        <div class="myflex">
+          <div class="tiercol">
+            <%= @f.input :zipcode, label: 'Code postal', required: true %>
+          </div>
+          <div class="restcol">
+            <%= @f.input :city, label: 'Ville', placeholder: 'Ville', required: true %>
+          </div>
+        </div>
+        <div class="myflex">
+          <div class="twocol">
+            <%= @f.input :tel1, label: 'Téléphone 1', required: true %>
+          </div>
+          <div class="twocol">
+            <%= @f.input :tel2, label: 'Téléphone 2' %>
+          </div>
+        </div>
+
+<%= @f.collection_select(:function_id, Function.all, :id, :name, {:class=>'visible'}) %>
+

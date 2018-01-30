@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171222153414) do
+ActiveRecord::Schema.define(version: 20171226162130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "functions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "year"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_students_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -30,8 +46,22 @@ ActiveRecord::Schema.define(version: 20171222153414) do
     t.datetime "updated_at",                          null: false
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "year"
+    t.string   "address"
+    t.string   "tel1"
+    t.string   "tel2"
+    t.boolean  "rib"
+    t.integer  "adhesion_year"
+    t.integer  "adhesion_num"
+    t.integer  "function_id"
+    t.string   "address2"
+    t.string   "zipcode"
+    t.string   "city"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["function_id"], name: "index_users_on_function_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "students", "users"
+  add_foreign_key "users", "functions"
 end

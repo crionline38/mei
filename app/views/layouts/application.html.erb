@@ -8,6 +8,8 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
   <body>
     <%= render 'shared/navbar' %>
@@ -15,7 +17,12 @@
     <div class="container">
       <%= yield %>
     </div>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
+    <script>
+      $(document).on('click', '#toast-container .toast', function() {
+          $(this).fadeOut(function(){
+              $(this).remove();
+          });
+      });
+    </script>
   </body>
 </html>
