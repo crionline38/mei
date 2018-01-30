@@ -1,19 +1,19 @@
 class AdherentController < ApplicationController
-  before_action :set_adherent, only: [:show, :edit, :update]
+  before_action :set_adherent, only: [:show, :edit, :update, :destroy]
 
   def index
     @adherents = User.all
   end
 
   def new
-    p params
     @adherent = User.new
   end
 
   def create
     @adherent = User.new(adherent_params)
+
         if @adherent.save
-                redirect_to adherent_path(@adherent), :notice => "Adhérent enregistré!"
+                redirect_to adherent_query_path(@adherent), :notice => "Adhérent enregistré!"
         else
                 render "new"
         end
@@ -41,7 +41,16 @@ class AdherentController < ApplicationController
   def show
   end
 
+  def profile
+    redirect_to adherent_path(current_user)
+  end
+
   def edit
+  end
+
+  def destroy
+    @adherent.destroy
+    redirect_to adherent_index_path, notice: 'Adhérent effacé.'
   end
 
   private

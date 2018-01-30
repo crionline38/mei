@@ -1,13 +1,15 @@
-<h2>Edit adhérent</h2>
-<%= simple_form_for @adherent, :url => adherent_path, :method => :put do |f| %>
-  <% @f=f %>
-  <%= @f.error_notification %>
+<div class="row mycard">
+  <h4>Edit adhérent</h4>
+  <%= simple_form_for @adherent, :url => adherent_path, :method => :put do |f| %>
+    <% @f=f %>
+    <%= @f.error_notification %>
 
-  <div class="form-inputs">
-    <%= render 'form' %>
-  </div>
-  <div class="form-actions">
-    <%= @f.button :submit, "Enregistrer" %>
-  </div>
+    <div class="form-inputs">
+      <%= render 'form' %>
+    </div>
+    <div class="form-actions">
+      <%= @f.button :submit, "Enregistrer" %>
+    </div>
 
-<% end %>
+  <% end %>
+</div>

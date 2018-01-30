@@ -2,13 +2,10 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <% if @hidden %>
-      <%= f.input :first_name, label: 'Nom', as: :hidden, :input_html => { :value => @student.user.first_name }, required: true  %>
-      <%= f.input :last_name, label: 'Prénom', as: :hidden, :input_html => { :value => @student.user.last_name }, required: true %>
-    <% else %>
-      <%= f.input :first_name, label: 'Nom', :input_html => { :value => @student.user.first_name }, required: true  %>
-      <%= f.input :last_name, label: 'Prénom', :input_html => { :value => @student.user.last_name }, required: true %>
-    <% end %>
+    <div class="<%= @hidden %>">
+        <%= f.input :first_name, label: 'Nom', :input_html => { :value => @student.user.first_name }, required: true  %>
+        <%= f.input :last_name, label: 'Prénom', :input_html => { :value => @student.user.last_name }, required: true %>
+    </div>
     <%= f.input :year, label: 'Année de naissance', required: true %>
     <%= f.association :user, :as => :hidden %>
   </div>

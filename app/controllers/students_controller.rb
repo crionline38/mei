@@ -12,16 +12,16 @@ class StudentsController < ApplicationController
   def query
   end
 
-  def query2
+  def querytwo
   end
 
   def yes
-    @hidden = true
+    @hidden = "hidden"
     @student = Student.new({ user: @adherent })
   end
 
   def new
-    @hidden = false
+    @hidden = ""
     @student = Student.new({ user: @adherent })
   end
 
@@ -31,7 +31,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
       if @student.save
-        redirect_to querytwo_path(@student.user), notice: 'Student was successfully created.'
+        redirect_to adherent_querytwo_path(@student.user), notice: 'Student was successfully created.'
       else
         render :new
       end
@@ -57,6 +57,7 @@ class StudentsController < ApplicationController
     end
 
     def set_student
+      p params
       @student = Student.find(params[:id])
     end
 

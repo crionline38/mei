@@ -13,5 +13,24 @@
   </div>
   <div class="mycard mygrow">
     <h3>Elèves : </h3>
+    <table>
+     <tr>
+       <th>Prénom</th>
+       <th>Nom</th>
+     </tr>
+      <% @adherent.students.each do |student| %>
+        <tr class="">
+          <td><%= student.first_name %></td>
+          <td>
+            <%= link_to student_path(student) do %>
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to student_path(student), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   </div>
 </div>

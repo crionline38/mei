@@ -11,4 +11,5 @@ class User < ApplicationRecord
   validates :tel1, presence: true
 
   belongs_to :function
+  has_many :students, dependent: :destroy
 end

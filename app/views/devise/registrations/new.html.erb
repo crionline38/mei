@@ -1,51 +1,51 @@
-<h2>Nouvel adhérent</h2>
+<div class="row mycard">
+  <h5>Nouvel adhérent</h5>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <div class="myflex">
-      <div class="mycard">
-        <%= f.input :email, required: true, autofocus: true %>
-        <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-        <%= f.input :password_confirmation, required: true %>
-      </div>
-      <div class="mycard mygrow">
-        <div class="myflex">
-          <div class="twocol">
-            <%= f.input :first_name, label: 'Nom', required: true %>
-          </div>
-          <div class="twocol">
-            <%= f.input :last_name, label: 'Prénom', required: true %>
+    <div class="form-inputs">
+        <div class="col x12 l4">
+          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= f.input :password_confirmation, required: true %>
+          <br/><br/>
+          <div class="form-actions">
+            <%= f.button :submit, "Enregistrer" %>
           </div>
         </div>
-        <%= f.input :address, label: 'Adresse', required: true  %>
-        <%= f.input :address2, label: 'Adresse 2' %>
-        <div class="myflex">
-          <div class="tiercol">
-            <%= f.input :zipcode, label: 'Code postal', required: true %>
+        <div class="col x12 l8">
+          <div class="myflex">
+            <div class="twocol">
+              <%= f.input :first_name, label: 'Nom', required: true %>
+            </div>
+            <div class="twocol">
+              <%= f.input :last_name, label: 'Prénom', required: true %>
+            </div>
           </div>
-          <div class="restcol">
-            <%= f.input :city, label: 'Ville', placeholder: 'Ville', required: true %>
+          <%= f.input :address, label: 'Adresse', required: true  %>
+          <%= f.input :address2, label: 'Adresse 2' %>
+          <div class="myflex">
+            <div class="tiercol">
+              <%= f.input :zipcode, label: 'Code postal', required: true %>
+            </div>
+            <div class="restcol">
+              <%= f.input :city, label: 'Ville', placeholder: 'Ville', required: true %>
+            </div>
           </div>
-        </div>
-        <div class="myflex">
-          <div class="twocol">
-            <%= f.input :tel1, label: 'Téléphone 1', required: true %>
-          </div>
-          <div class="twocol">
-            <%= f.input :tel2, label: 'Téléphone 2' %>
-          </div>
+          <div class="myflex">
+            <div class="twocol">
+              <%= f.input :tel1, label: 'Téléphone 1', required: true %>
+            </div>
+            <div class="twocol">
+              <%= f.input :tel2, label: 'Téléphone 2' %>
+            </div>
 
-        </div>
-        <%= f.collection_select(:function_id, [Function.first], :id, :name) %>
+          </div>
+          <%= f.collection_select(:function_id, [Function.first], :id, :name) %>
       </div>
     </div>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Enregistrer" %>
-  </div>
-<% end %>
-<%= render "devise/shared/links" %>
 
+  <% end %>
+
+</div>

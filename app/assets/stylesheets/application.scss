@@ -4,8 +4,8 @@
 @import "config/bootstrap_variables";
 
 // External libraries
-@import "bootstrap-sprockets";
-@import "bootstrap";
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -14,30 +14,5 @@
 @import "components/index";
 @import "pages/index";
 
-.myflex {
-  display: flex;
-  justify-content: space-between;
-}
-.mygrow {
-  flex-grow:1;
-}
-.mycard {
-  background-color: #fff;
-  border-radius: 5px;
-  border: 1px solid #222;
-  margin: 10px;
-  padding: 20px;
-  box-shadow: 1px 1px 1px #222;
-}
-.twocol {
-  width: 50%;
-}
-.tiercol {
-  width: 30%;
-}
-.restcol {
-  width: 70%;
-}
-input {
-  padding: 5px;
-}
+@import "materialize";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
