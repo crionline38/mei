@@ -11,7 +11,7 @@
 
       <!-- Links when logged in -->
       <%= link_to "Adhérents", adherent_index_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Elèves", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Elèves", students_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Professeurs", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Cours", "#", class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Profile", adherent_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>

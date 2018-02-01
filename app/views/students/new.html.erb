@@ -1,5 +1,7 @@
 <div class="mycard">
   <h4>Ajouter un élève</h4>
-
-  <%= render 'form', student: @student %>
+  <%= simple_form_for @student, :url => adherent_students_path, :method => :post do |f| %>
+    <% @f=f %>
+    <%= render 'form', student: @student %>
+  <% end %>
 </div>

@@ -1,27 +1,35 @@
-<h3>Liste d'adhérents
-<%= link_to new_adherent_path do  %>
-<i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter un adhérent"></i>
-<% end %></h3>
-<table>
-   <tr>
-     <th>Prénom</th>
-     <th>Nom</th>
-     <th>Fonction</th>
-     <th>Actions</th>
-   </tr>
-  <% @adherents.each do |adherent| %>
-    <tr class="mycard">
-      <td><%= adherent.first_name %></td>
-      <td><%= adherent.last_name %></td>
-      <td><%= adherent.function.name %></td>
-      <td>
-        <%= link_to adherent_path(adherent) do %>
-          <i class="fa fa-info-circle" aria-hidden="true" title="Détails"></i>
-        <% end %>
-        <%= link_to adherent_path(adherent), method: :delete, data: { confirm: 'Are you sure?' } do %>
-          <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<div class="row title">
+  <h4>Liste d'adhérents
+  <%= link_to new_adherent_path do  %>
+  <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter un adhérent"></i>
+  <% end %></h4>
+</div>
+<div class="row mycard">
+  <table class="striped responsive-table">
+    <thead>
+      <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Fonction</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @adherents.each do |adherent| %>
+        <tr>
+          <td><%= adherent.first_name %></td>
+          <td><%= adherent.last_name %></td>
+          <td><%= adherent.function.name %></td>
+          <td>
+            <%= link_to adherent_path(adherent) do %>
+              <i class="fa fa-info-circle" aria-hidden="true" title="Détails"></i>
+            <% end %>
+            <%= link_to adherent_path(adherent), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

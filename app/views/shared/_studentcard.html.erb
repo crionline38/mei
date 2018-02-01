@@ -1,0 +1,11 @@
+<div class="row mycard myflex">
+  <div class="mygrow">
+    <%= @student.first_name %> <%= @student.last_name %>
+  </div>
+  <%= link_to student_path(@student) do %>
+    <i class="fa fa-info-circle" aria-hidden="true"></i>
+  <% end %>
+  <%= link_to student_path(@student), method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+  <% end %>
+</div>

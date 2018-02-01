@@ -31,7 +31,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
       if @student.save
-        redirect_to adherent_querytwo_path(@student.user), notice: 'Student was successfully created.'
+        redirect_to adherent_querytwo_path(@student.user), notice: 'Elève créé.'
       else
         render :new
       end
@@ -39,7 +39,7 @@ class StudentsController < ApplicationController
 
   def update
     if @student.update(student_params)
-      format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+      redirect_to @student, notice: 'Elève updaté.'
     else
       format.html { render :edit }
     end
@@ -48,7 +48,7 @@ class StudentsController < ApplicationController
   def destroy
     user=@student.user
     @student.destroy
-    redirect_to adherent_path(user), notice: 'Student was successfully destroyed.'
+    redirect_to adherent_path(user), notice: 'Elève effacé.'
   end
 
   private

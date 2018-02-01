@@ -1,29 +1,22 @@
-
 #toast-container {
   top: 75px !important;
   right:0px !important;
   cursor: pointer;
 }
-
 .toast-action {
   color: white !important;
 }
-
 body {
   font-family: 'Kalam', cursive;
   background-color: $body-back;
   font-size: 20px;
 }
-
 h1, h2 {
   font-family: 'Concert One', cursive;
 }
-
-
 label {
-  font-size: 25px !important;
+  font-size: 1em !important;
 }
-
 .myflex {
   display: flex;
   justify-content: space-between;
@@ -59,16 +52,14 @@ label {
 }
 input {
   padding: 5px;
-  font-size: 1.2em !important;
+  font-size: 1em !important;
 }
 .center {
   text-align: center;
 }
-
 .btn {
   background-color: $action !important;
 }
-
 .help-block {
   color: red !important;
 }
@@ -79,4 +70,8 @@ select {
   display: block !important;
   font-size: 1.4em !important;
   margin: 10px !important;
+}
+
+th, td {
+  padding: 2px !important;
 }

@@ -1,6 +1,12 @@
-<h1>Editing Student</h1>
+<div class="row">
+  <h4>Modification élève</h4>
+</div>
+<div class="row mycard">
+  <%= simple_form_for @student, :url => student_path(@student), :method => :put do |f| %>
 
-<%= render 'form', student: @student %>
-
-<%= link_to 'Show', @student %> |
-<%= link_to 'Back', students_path %>
+    <% @f=f %>
+    <%= render 'form', student: @student %>
+  <% end %>
+  <%= link_to 'Show', @student %> |
+  <%= link_to 'Back', students_path %>
+</div>

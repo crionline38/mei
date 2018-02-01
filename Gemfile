@@ -28,7 +28,6 @@ gem 'activerecord-session_store'
 gem 'webpacker', '~> 3.0'
 gem "letter_opener", group: :development
 
-
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
