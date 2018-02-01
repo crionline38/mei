@@ -4,7 +4,7 @@
   <h4>Ajouter un élève</h4>
   <h5></h5>
 </div>
-<div class="row mycard">
+<div class="mycard">
   <%= simple_form_for @student, :url => adherent_students_path, :method => :post do |f| %>
     <% @f=f %>
     <%= render 'form', student: @student %>

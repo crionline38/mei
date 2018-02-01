@@ -1,5 +1,8 @@
-<div class="mycard center">
+<div class="title">
+  <h4></h4>
   <h3>Y'a plus qu'a donner votre année de naissance!</h3>
+  <h4></h4>
+</div><div class="mycard center">
   <%= simple_form_for @student, :url => adherent_students_path, :method => :post do |f| %>
     <% @f=f %>
     <%= render 'form', student: @student %>

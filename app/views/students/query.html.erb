@@ -1,5 +1,9 @@
-<div class="mycard center">
+<div class="title">
+  <h4></h4>
   <h4>Etes vous l'élève ?</h4>
+  <h4></h4>
+</div>
+<div class="mycard center">
   <%= link_to "Oui", adherent_yes_path(@adherent), class: "btn btn-success" %>
   <%= link_to "Non", new_adherent_student_path(@adherent), class: "btn btn-danger"  %>
 </div>
