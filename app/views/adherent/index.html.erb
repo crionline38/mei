@@ -8,8 +8,8 @@
   <table class="striped responsive-table">
     <thead>
       <tr>
-        <th>Prénom</th>
         <th>Nom</th>
+        <th>Prénom</th>
         <th>Fonction</th>
         <th></th>
       </tr>
@@ -21,10 +21,11 @@
           <td><%= adherent.last_name %></td>
           <td><%= adherent.function.name %></td>
           <td>
-            <%= link_to adherent_path(adherent) do %>
+            <%= link_to adherent_path(adherent), class: "secondary-content" do %>
               <i class="fa fa-info-circle" aria-hidden="true" title="Détails"></i>
-            <% end %>
-            <%= link_to adherent_path(adherent), method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <% end %></td>
+
+            <td><%= link_to adherent_path(adherent), class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } do %>
               <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
             <% end %>
           </td>

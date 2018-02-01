@@ -61,7 +61,8 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
 
-config.action_mailer.default_url_options = { :host => 'http://localhost', port: 3000 }
+
+config.action_mailer.default_url_options = { :host => 'http://mei.netsite.fr' }
 config.action_mailer.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
   :user_name            => ENV['SENDGRID_USERNAME'],
@@ -70,7 +71,7 @@ ActionMailer::Base.smtp_settings = {
   :port                 => 587,
   :enable_starttls_auto => true,
   :authentication       => :plain,
-  :domain               => "http://localhost:3000"
+  :domain               => "http://mei.netsite.fr/"
 }
 
 

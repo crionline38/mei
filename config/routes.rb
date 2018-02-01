@@ -8,8 +8,7 @@ Rails.application.routes.draw do
     get 'querytwo', to: 'students#querytwo'
   end
 
-  devise_for :users
-
+devise_for :users, controllers: { registrations: "registrations" }
   devise_scope :user do
     authenticated :user do
       root 'adherent#profile', as: :authenticated_root
