@@ -10,11 +10,11 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Adhérents", adherent_index_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Elèves", students_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Professeurs", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Cours", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Profile", adherent_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Adhérents", adherent_index_path, class: "waves-effect waves-light btn" %>
+      <%= link_to "Elèves", students_path, class: "waves-effect waves-light btn" %>
+      <%= link_to "Professeurs", "#", class: "waves-effect waves-light btn" %>
+      <%= link_to "Cours", "#", class: "waves-effect waves-light btn" %>
+      <%= link_to "Profile", adherent_path(current_user), class: "waves-effect waves-light btn" %>
       <!-- Dropdown Structure -->
       <ul id="dropdown1" class="dropdown-content">
                   <li>

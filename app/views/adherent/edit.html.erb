@@ -1,5 +1,10 @@
-<div class="row mycard">
+<div class="title">
+  <h4><a href="#" onClick="history.go(-1);return true;">
+      <i class="fa fa-chevron-circle-left"></i></a></h4>
   <h4>Edit adhérent</h4>
+  <h4></h4>
+</div>
+<div class="row mycard">
   <%= simple_form_for @adherent, :url => adherent_path, :method => :put do |f| %>
     <% @f=f %>
     <%= @f.error_notification %>

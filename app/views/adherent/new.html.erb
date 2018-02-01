@@ -1,4 +1,9 @@
-<h2>Nouveau membre</h2>
+<div class="title">
+  <h4><a href="#" onClick="history.go(-1);return true;">
+        <i class="fa fa-chevron-circle-left"></i></a></h4>
+  <h4>Nouveau membre</h4>
+  <h5></h5>
+</div>
 <%= simple_form_for @adherent, :url => adherent_index_path, :method => :post do |f| %>
   <% @f=f %>
   <%= @f.error_notification %>

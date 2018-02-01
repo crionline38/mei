@@ -1,12 +1,13 @@
-<div class="row">
+<div class="title">
+  <h4><a href="#" onClick="history.go(-1);return true;">
+        <i class="fa fa-chevron-circle-left"></i></a></h4>
   <h4>Modification élève</h4>
+  <h4></h4>
 </div>
-<div class="row mycard">
+<div class="mycard">
   <%= simple_form_for @student, :url => student_path(@student), :method => :put do |f| %>
 
     <% @f=f %>
     <%= render 'form', student: @student %>
   <% end %>
-  <%= link_to 'Show', @student %> |
-  <%= link_to 'Back', students_path %>
 </div>
