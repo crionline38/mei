@@ -1,0 +1,36 @@
+<div class="title">
+  <h4><a href="#" onClick="history.go(-1);return true;">
+        <i class="fa fa-chevron-circle-left"></i></a></h4>
+  <h4><%= @discipline.name %></h4>
+  <h4></h4>
+</div>
+
+<div class="mycard">
+
+  <p>
+    <strong>Duree:</strong>
+    <%= @discipline.duree %>
+  </p>
+
+  <p>
+    <strong>Frequence:</strong>
+    <%= @discipline.frequence.name %>
+  </p>
+
+  <p>
+    <strong>Tarif1:</strong>
+    <%= @discipline.tarif1 %>
+  </p>
+
+  <p>
+    <strong>Tarif2:</strong>
+    <%= @discipline.tarif2 %>
+  </p>
+
+  <p>
+    <strong>Tarif3:</strong>
+    <%= @discipline.tarif3 %>
+  </p>
+
+  <%= link_to 'Edit', edit_discipline_path(@discipline) %> |
+</div>
