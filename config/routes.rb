@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-    resources :students
+  resources :disciplines
+
+  resources :students
+
   resources :adherent do
     resources :students
     get 'query', to: 'students#query'
