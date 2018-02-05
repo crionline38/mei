@@ -2,15 +2,20 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :duree %>
-<%= f.collection_select(:frequence_id, Frequence.all, :id, :name, {:class=>'visible'}) %>
-    <%= f.input :tarif1 %>
-    <%= f.input :tarif2 %>
-    <%= f.input :tarif3 %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+    <div class="row">
+      <div class="col s12 l6 separator padding">
+        <%= f.input :name %>
+        <%= f.input :duree %>
+        <%= f.collection_select(:frequence_id, Frequence.all, :id, :name, {:class=>'visible'}) %>
+      </div>
+      <div class="col s12 l6  padding">
+        <%= f.input :tarif1 %>
+        <%= f.input :tarif2 %>
+        <%= f.input :tarif3 %>
+      </div>
+    </div>
+    <div class="form-actions center">
+      <%= f.button :submit %>
+    </div>
   </div>
 <% end %>
