@@ -4,26 +4,28 @@
   <h4>Nouveau membre</h4>
   <h5></h5>
 </div>
-<%= simple_form_for @adherent, :url => adherent_index_path, :method => :post do |f| %>
-  <% @f=f %>
-  <%= @f.error_notification %>
+<div class="mycard">
+  <%= simple_form_for @adherent, :url => adherent_index_path, :method => :post do |f| %>
+    <% @f=f %>
+    <%= @f.error_notification %>
 
-  <div class="form-inputs">
-    <div class="myflex">
-      <div class="mycard">
-        <%= @f.input :email, required: true, autofocus: true %>
-        <%= @f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-        <%= @f.input :password_confirmation, required: true %>
-        <br/><br/>
-        <div class="form-actions">
-          <%= f.button :submit, "Enregistrer" %>
+    <div class="form-inputs">
+      <div class="myflex">
+        <div class="mycard">
+          <%= @f.input :email, required: true, autofocus: true %>
+          <%= @f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= @f.input :password_confirmation, required: true %>
+          <br/><br/>
+          <div class="form-actions">
+            <%= f.button :submit, "Enregistrer" %>
+          </div>
+        </div>
+        <div class="mycard mygrow">
+          <%= render 'form' %>
         </div>
       </div>
-      <div class="mycard mygrow">
-        <%= render 'form' %>
-      </div>
     </div>
-  </div>
 
 
-<% end %>
+  <% end %>
+</div>

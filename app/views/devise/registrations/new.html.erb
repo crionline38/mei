@@ -1,5 +1,11 @@
-<div class="row mycard">
-  <h5>Nouvel adhérent</h5>
+<div class="title">
+  <h4><a href="#" onClick="history.go(-1);return true;">
+        <i class="fa fa-chevron-circle-left"></i></a></h4>
+  <h4>Nouvel adhérent</h4>
+  <h4></h4>
+</div>
+
+<div class="mycard">
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
 

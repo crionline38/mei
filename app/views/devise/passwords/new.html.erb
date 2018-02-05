@@ -1,15 +1,22 @@
-<h2>Forgot your password?</h2>
+<div class="title">
+  <h4><a href="#" onClick="history.go(-1);return true;">
+        <i class="fa fa-chevron-circle-left"></i></a></h4>
+  <h4>Mot de passe oublié?</h4>
+  <h4></h4>
+</div>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+<div class="mycard">
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-  </div>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
+    <div class="form-inputs">
+      <%= f.input :email, required: true, autofocus: true %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="form-actions center">
+      <%= f.button :submit, "M'envoyer un lien pour changer mon mot de passe" %>
+    </div>
+  <% end %>
+
+</div>
