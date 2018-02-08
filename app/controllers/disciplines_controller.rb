@@ -4,7 +4,7 @@ class DisciplinesController < ApplicationController
   # GET /disciplines
   # GET /disciplines.json
   def index
-    @disciplines = Discipline.all
+    @disciplines = Discipline.where(valide: true).order('name')
   end
 
   # GET /disciplines/1
@@ -61,6 +61,6 @@ class DisciplinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discipline_params
-      params.require(:discipline).permit(:name, :duree, :frequence_id, :tarif1, :tarif2, :tarif3)
+      params.require(:discipline).permit(:name, :duree, :frequence_id, :tarif_id)
     end
 end

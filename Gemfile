@@ -11,6 +11,7 @@ gem 'devise'
 gem 'autoprefixer-rails'
 # gem 'bootstrap-sass'
 gem 'materialize-sass'
+gem 'material_icons'
 gem 'font-awesome-sass'
 gem "font-awesome-rails"
 gem 'jquery-rails'

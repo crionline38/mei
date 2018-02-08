@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   before_action :set_adherent, only: [:query, :querytwo, :yes, :new]
 
    def index
-    @students = Student.all
+    @students = Student.order('first_name')
   end
 
   def show

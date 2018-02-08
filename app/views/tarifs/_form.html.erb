@@ -1,0 +1,14 @@
+<%= simple_form_for(@tarif) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, label: "Titre" %>
+    <%= f.input :a, label: "Tarif + de 20 ans" %>
+    <%= f.input :b, label: "Tarif 9 - 20 ans" %>
+    <%= f.input :c, label: "Tarif 6 - 8 ans" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

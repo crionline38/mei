@@ -18,9 +18,9 @@
         <th>Nom</th>
         <th>Durée en min</th>
         <th>Frequence</th>
-        <th>6/8 ans</th>
-        <th>9/20 ans</th>
         <th>+20 ans</th>
+        <th>9/20 ans</th>
+        <th>6/8 ans</th>
       </tr>
     </thead>
 
@@ -30,10 +30,9 @@
           <td><%= discipline.name %></td>
           <td><%= discipline.duree %></td>
           <td><%= discipline.frequence.name %></td>
-          <td><%= discipline.tarif1 %></td>
-          <td><%= discipline.tarif2 %></td>
-          <td><%= discipline.tarif3 %></td>
-          <% p discipline.valide %>
+          <td><%= discipline.tarif.a %></td>
+          <td><%= discipline.tarif.b %></td>
+          <td><%= discipline.tarif.c %></td>
           <td><%= discipline.valide %></td>
           <td>
             <%= link_to edit_discipline_path(discipline), class: "secondary-content" do %>

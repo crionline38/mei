@@ -4,14 +4,13 @@
   <div class="form-inputs">
     <div class="row">
       <div class="col s12 l6 separator padding">
-        <%= f.input :name %>
-        <%= f.input :duree %>
+        <%= f.input :name, label: "Nom" %>
+        <%= f.input :duree, label: "Durée" %>
         <%= f.collection_select(:frequence_id, Frequence.all, :id, :name, {:class=>'visible'}) %>
       </div>
       <div class="col s12 l6  padding">
-        <%= f.input :tarif1 %>
-        <%= f.input :tarif2 %>
-        <%= f.input :tarif3 %>
+        <h4>Tarif :</h4>
+        <%= f.collection_select(:tarif_id, Tarif.all, :id, :name, {:class=>'visible'}) %>
       </div>
     </div>
     <div class="form-actions center">

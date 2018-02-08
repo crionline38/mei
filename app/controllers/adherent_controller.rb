@@ -2,7 +2,7 @@ class AdherentController < ApplicationController
   before_action :set_adherent, only: [:show, :edit, :update, :destroy]
 
   def index
-    @adherents = User.all
+    @adherents = User.order('first_name')
   end
 
   def new

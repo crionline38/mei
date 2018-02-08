@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tarifs
   resources :disciplines
 
   resources :students
