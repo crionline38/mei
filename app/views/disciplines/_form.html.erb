@@ -10,7 +10,7 @@
       </div>
       <div class="col s12 l6  padding">
         <h4>Tarif :</h4>
-        <%= f.collection_select(:tarif_id, Tarif.all, :id, :name, {:class=>'visible'}) %>
+        <%= f.collection_select(:tarif_id, Tarif.where(valide: true).order('name'), :id, :name, {:class=>'visible'}) %>
       </div>
     </div>
     <div class="form-actions center">
