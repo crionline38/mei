@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
+
+  resources :years
+  resources :instruments
   resources :tarifs
   resources :disciplines
 
-  resources :students
+  resources :students do
+    resources :cours
 
+  end
   resources :adherent do
+    resources :adhesions, only: [:new, :update]
     resources :students
     get 'query', to: 'students#query'
     get 'yes', to: 'students#yes'
@@ -23,5 +29,8 @@ devise_for :users, controllers: { registrations: "registrations" }
     end
   end
 root 'pages#home'
+
+get 'profs', to: 'adherent#profs'
+get 'bureau', to: 'adherent#bureau'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

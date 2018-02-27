@@ -1,0 +1,14 @@
+<%= simple_form_for(@student, @cour) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :student %>
+    <%= f.association :discipline %>
+    <%= f.association :instrument %>
+    <%= f.association :user %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

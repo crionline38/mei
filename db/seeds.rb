@@ -2,13 +2,13 @@
 User.destroy_all
 Function.destroy_all
 
-function = Function.create({name: "Adhérent"})
-function = Function.create({name: "Professeur"})
-function = Function.create({name: "Bureau"})
-function = Function.create({name: "Secrétaire"})
-function = Function.create({name: "Trésorier"})
-function = Function.create({name: "Président"})
-function = Function.create({name: "Admin"})
+fadh = Function.create({name: "Adhérent"})
+fprof = Function.create({name: "Professeur"})
+fbur = Function.create({name: "Bureau"})
+fsec = Function.create({name: "Secrétaire"})
+ftres = Function.create({name: "Trésorier"})
+fpre = Function.create({name: "Président"})
+fadmin = Function.create({name: "Admin"})
 
 Frequence.destroy_all
 hebdo = Frequence.create({name: "Hebdo"})
@@ -25,47 +25,67 @@ atelier = Tarif.create({name: "Atelier", a: 150, b: 150, c: 150, valide: true })
 zero = Tarif.create({name: "Formation Musicale"})
 
 Discipline.destroy_all
-discipline = Discipline.create({name: "Eveil musical (5/6 ans)",
+em = Discipline.create({name: "Eveil musical (5/6 ans)",
                                duree:"30", frequence: hebdo,
                                tarif: eveil,
                                valide: true, fm: false})
-discipline = Discipline.create({name: "Guitare moderne",
+instru = Discipline.create({name: "Instrument + FM",
                                duree:"30", frequence: hebdo,
                                tarif: instrument,
                                valide: true, fm: true})
-discipline = Discipline.create({name: "Guitare classique",
-                               duree:"30", frequence: hebdo,
-                               tarif: instrument,
-                               valide: true, fm: true})
-discipline = Discipline.create({name: "Piano moderne",
-                               duree:"30", frequence: hebdo,
-                               tarif: instrument,
-                               valide: true, fm: true})
-discipline = Discipline.create({name: "Piano classique",
-                               duree:"30", frequence: hebdo,
-                               tarif: instrument,
-                               valide: true, fm: true})
-discipline = Discipline.create({name: "Saxophone",
-                               duree:"30", frequence: hebdo,
-                               tarif: instrument,
-                               valide: true, fm: true})
-discipline = Discipline.create({name: "Batterie",
+bat = Discipline.create({name: "Batterie",
                                duree:"30", frequence: hebdo,
                                tarif: batterie,
                                valide: true, fm: false})
-discipline = Discipline.create({name: "Technique vocale Individuel",
+voci = Discipline.create({name: "Technique vocale Individuel",
                                duree:"60", frequence: bi,
                                tarif: techind,
                                valide: true, fm: false})
-discipline = Discipline.create({name: "Technique vocale collectif",
+vocc = Discipline.create({name: "Technique vocale collectif",
                                duree:"120", frequence: bi,
                                tarif: techcol,
                                valide: true, fm: false})
-discipline = Discipline.create({name: "Formation musicale",
+fm = Discipline.create({name: "Formation musicale",
                                duree:"60", frequence: hebdo,
                                tarif: zero,
                                valide: true, fm: false})
-discipline = Discipline.create({name: "Atelier",
+atelier = Discipline.create({name: "Atelier",
                                duree:"60", frequence: aucun,
                                tarif: atelier,
                                valide: true, fm: false})
+
+Instrument.destroy_all
+evm = Instrument.create({name: "Eveil musical (5/6 ans)",valide: true})
+gm = Instrument.create({name: "Guitare moderne",valide: true})
+gc = Instrument.create({name: "Guitare classique",valide: true})
+pm = Instrument.create({name: "Piano moderne",valide: true})
+pc = Instrument.create({name: "Piano classique",valide: true})
+sax = Instrument.create({name: "Saxophone",valide: true})
+drums = Instrument.create({name: "Batterie",valide: true})
+chant = Instrument.create({name: "Chant",valide: true})
+
+Instrud.destroy_all
+Instrud.create({instrument: evm, discipline: em})
+Instrud.create({instrument: gm, discipline: instru})
+Instrud.create({instrument: gc, discipline: instru})
+Instrud.create({instrument: pm, discipline: instru})
+Instrud.create({instrument: pc, discipline: instru})
+Instrud.create({instrument: sax, discipline: instru})
+Instrud.create({instrument: drums, discipline: bat})
+Instrud.create({instrument: chant, discipline: voci})
+Instrud.create({instrument: chant, discipline: vocc})
+
+Instrud.create({instrument: gm, discipline: atelier})
+Instrud.create({instrument: gc, discipline: atelier})
+Instrud.create({instrument: pm, discipline: atelier})
+Instrud.create({instrument: pc, discipline: atelier})
+Instrud.create({instrument: sax, discipline: atelier})
+Instrud.create({instrument: drums, discipline: atelier})
+Instrud.create({instrument: chant, discipline: atelier})
+Instrud.create({instrument: chant, discipline: atelier})
+
+
+Year.destroy_all
+y16 = Year.create({name: "2015/2016", valide: true})
+y17 = Year.create({name: "2016/2017", valide: true})
+y18 = Year.create({name: "2017/2018", valide: true})

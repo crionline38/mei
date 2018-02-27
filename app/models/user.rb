@@ -13,6 +13,9 @@ class User < ApplicationRecord
 
   belongs_to :function
   has_many :students, dependent: :destroy
+  has_many :cours
+  has_many :adhesions
+  has_many :years, through: :adhesions
 
   private
 

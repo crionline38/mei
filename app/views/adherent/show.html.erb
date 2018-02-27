@@ -22,7 +22,13 @@
     </div>
 
     <div class="col s12 l6 padding">
-      <h5><u>Situation administrative</u></h5><br/>
+      <h5><u>Situation administrative</u></h5><%= @saison.name %><br/>
+      <% if @adherent.years.include?(@saison) %>
+        Adhérent
+      <% else %>
+        Non adhérent
+        <%= link_to "Adhérer", new_adherent_adhesion_path(@adherent), class: "fa fa-user" %>
+      <% end %>
     </div>
 </div>
   </div>

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :testsaison
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -9,5 +10,10 @@ class ApplicationController < ActionController::Base
 
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+  end
+
+  def testsaison
+      session['saison'] = params['saison'].to_i if params['saison']
+      session['saison'] ? @saison = Year.find(session['saison'].to_i) : @saison = Year.all.order('name').last
   end
 end

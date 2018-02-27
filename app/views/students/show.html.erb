@@ -1,31 +1,47 @@
-<div class="title">
-  <h4><a href="#" onClick="history.go(-1);return true;">
-        <i class="fa fa-chevron-circle-left"></i></a></h4>
-  <h4>Détails élève :</h4>
-  <h4></h4>
+<div class="row">
+  <div class="col s6">
+    <div class="title">
+      <h4><a href="#" onClick="history.go(-1);return true;">
+            <i class="fa fa-chevron-circle-left"></i></a></h4>
+      <h4>Détails élève :</h4>
+      <h4></h4>
+    </div>
+
+    <div class="mycard">
+      <p>
+        <strong>Nom:</strong>
+        <%= @student.first_name %>
+      </p>
+
+      <p>
+        <strong>Prénom:</strong>
+        <%= @student.last_name %>
+      </p>
+
+      <p>
+        <strong>Année:</strong>
+        <%= @student.year %>
+      </p>
+
+      <p>
+        <strong>Adhérent:</strong>
+        <%= @student.user.first_name %> <%= @student.user.last_name %>
+      </p>
+
+      <%= link_to 'Modifier', edit_student_path( @student) %>
+    </div>
+  </div>
+  <div class="col s6">
+    <div class="title">
+      <h4><a href="#" onClick="history.go(-1);return true;">
+            <i class="fa fa-chevron-circle-left"></i></a></h4>
+      <h4>Cours :</h4>
+      <h4><%= link_to new_student_cour_path(@student) do  %>
+      <i class="fa fa-plus-circle" aria-hidden="true" title="S'inscrire à un cours"></i>
+      <% end %></h4>
+    </div>
+
+    <div class="mycard">
+    </div>
+  </div>
 </div>
-
-<div class="mycard">
-  <p>
-    <strong>Nom:</strong>
-    <%= @student.first_name %>
-  </p>
-
-  <p>
-    <strong>Prénom:</strong>
-    <%= @student.last_name %>
-  </p>
-
-  <p>
-    <strong>Année:</strong>
-    <%= @student.year %>
-  </p>
-
-  <p>
-    <strong>Adhérent:</strong>
-    <%= @student.user.first_name %> <%= @student.user.last_name %>
-  </p>
-
-  <%= link_to 'Modifier', edit_student_path( @student) %>
-</div>
-

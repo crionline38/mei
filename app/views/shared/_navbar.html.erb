@@ -8,28 +8,42 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <% if user_signed_in? %>
-
+      Saison
+      <%= select_tag "saison", options_from_collection_for_select(Year.all.order('name').reverse, "id", "name", @saison.id), :onChange=>"javascript: window.location.href = `?saison=${this.value}`;" %>
       <!-- Links when logged in -->
-      <%= link_to "Adhérents", adherent_index_path, class: "waves-effect waves-light btn" %>
-      <%= link_to "Elèves", students_path, class: "waves-effect waves-light btn" %>
-      <%= link_to "Disciplines", disciplines_path, class: "waves-effect waves-light btn" %>
-      <%= link_to "Tarifs", tarifs_path, class: "waves-effect waves-light btn" %>
+      <ul id="dropdown2" class="dropdown-content dropdown">
+        <li><%= link_to "Bureau", bureau_path, class: "fa fa-user" %></li>
+        <li><%= link_to "Professeurs", profs_path, class: "fa fa-user" %></li>
+        <li><%= link_to "Adhérents", adherent_index_path, class: "fa fa-user" %></li>
+        <li><%= link_to "Elèves", students_path, class: "fa fa-user" %></li>
+      </ul>
+      <a class="dropdown-button waves-effect waves-light btn" href="#!" data-activates="dropdown2">Membres</a>
+
+      <ul id="dropdown3" class="dropdown-content dropdown">
+        <li><%= link_to "Disciplines", disciplines_path, class: "fa fa-user" %></li>
+        <li><%= link_to "Tarifs", tarifs_path, class: "fa fa-user" %></li>
+        <li><%= link_to "Instruments", instruments_path, class: "fa fa-user" %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Saisons", years_path, class: "fa fa-user" %></li>
+      </ul>
+      <a class="dropdown-button waves-effect waves-light btn" href="#!" data-activates="dropdown3">Paramètres</a>
+
+
       <%= link_to "Cours", "#", class: "waves-effect waves-light btn" %>
       <%= link_to "Profile", adherent_path(current_user), class: "waves-effect waves-light btn" %>
       <!-- Dropdown Structure -->
-      <ul id="dropdown1" class="dropdown-content">
-                  <li>
-                    <%= link_to adherent_path(current_user) do %>
-                      <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-                    <% end %>
-                  </li>
-
+      <ul id="dropdown1" class="dropdown-content dropdown">
+        <li>
+          <%= link_to adherent_path(current_user) do %>
+            <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+          <% end %>
+        </li>
         <li class="divider"></li>
-                  <li>
-                    <%= link_to destroy_user_session_path, method: :delete do %>
-                      <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-                    <% end %>
-                  </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+            <% end %>
+          </li>
       </ul>
       <a class="dropdown-button" href="#!" data-activates="dropdown1"><%= image_tag "avatar.jpg", class: "avatar " %></a>
 

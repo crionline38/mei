@@ -2,7 +2,20 @@ class AdherentController < ApplicationController
   before_action :set_adherent, only: [:show, :edit, :update, :destroy]
 
   def index
+    @title = "Adhérents"
     @adherents = User.order('first_name')
+  end
+
+  def bureau
+    @title = "Bureau"
+    @adherents = User.joins(:function).where("functions.name = 'Président' OR functions.name = 'Trésorier' OR functions.name = 'Secrétaire' OR functions.name = 'Bureau'")
+    render "index"
+  end
+
+  def profs
+    @title = "Professeurs"
+    @adherents = User.joins(:function).where(functions: {name: "Professeur"})
+    render "index"
   end
 
   def new
