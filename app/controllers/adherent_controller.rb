@@ -2,19 +2,26 @@ class AdherentController < ApplicationController
   before_action :set_adherent, only: [:show, :edit, :update, :destroy]
 
   def index
-    @title = "Adhérents"
-    @adherents = User.order('first_name')
+    if params[:query].present?
+      sql_query = "first_name ILIKE :query OR last_name ILIKE :query"
+      @title = "Résultats"
+      @adherents = User.where(sql_query, query: "%#{params[:query]}%").order('function_id, first_name')
+    else
+      @title = "Adhérents"
+      @adherents = User.joins(:years).where(years: {name: @saison.name}).order('first_name DESC')
+    end
+    render "index"
   end
 
   def bureau
     @title = "Bureau"
-    @adherents = User.joins(:function).where("functions.name = 'Président' OR functions.name = 'Trésorier' OR functions.name = 'Secrétaire' OR functions.name = 'Bureau'")
+    @adherents = User.joins(:function).where("functions.name = 'Président' OR functions.name = 'Trésorier' OR functions.name = 'Secrétaire' OR functions.name = 'Bureau'").order('function_id').reverse
     render "index"
   end
 
   def profs
     @title = "Professeurs"
-    @adherents = User.joins(:function).where(functions: {name: "Professeur"})
+    @adherents = User.joins(:function).where(functions: {name: "Professeur"}).order('first_name')
     render "index"
   end
 
@@ -24,12 +31,11 @@ class AdherentController < ApplicationController
 
   def create
     @adherent = User.new(adherent_params)
-
-        if @adherent.save
-                redirect_to adherent_query_path(@adherent), :notice => "Adhérent enregistré!"
-        else
-                render "new"
-        end
+    if @adherent.save
+      redirect_to adherent_query_path(@adherent), :notice => "Adhérent enregistré!"
+    else
+      render "new"
+    end
   end
 
   def update

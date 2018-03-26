@@ -33,8 +33,7 @@
   </div>
   <div class="col s6">
     <div class="title">
-      <h4><a href="#" onClick="history.go(-1);return true;">
-            <i class="fa fa-chevron-circle-left"></i></a></h4>
+      <h4></h4>
       <h4>Cours :</h4>
       <h4><%= link_to new_student_cour_path(@student) do  %>
       <i class="fa fa-plus-circle" aria-hidden="true" title="S'inscrire à un cours"></i>
@@ -42,6 +41,7 @@
     </div>
 
     <div class="mycard">
+      <%= render 'shared/courlist' %>
     </div>
   </div>
 </div>

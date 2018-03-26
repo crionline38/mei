@@ -1,11 +1,14 @@
-<%= simple_form_for(@student, @cour) do |f| %>
+<%= simple_form_for [@student, @cour] do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :student %>
     <%= f.association :discipline %>
     <%= f.association :instrument %>
-    <%= f.association :user %>
+    <div class="hidden">
+      <%= f.association :student, collection: [@student], selected: 1 %>
+      <%= f.association :user, collection: [@student.user], selected: 1 %>
+      <%= f.association :year, collection: [@saison], selected: 1 %>
+    </div>
   </div>
 
   <div class="form-actions">

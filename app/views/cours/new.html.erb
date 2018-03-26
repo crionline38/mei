@@ -1,5 +1,12 @@
-<h1>New Cour</h1>
+<div class="title">
+  <h4><a href="#" onClick="history.go(-1);return true;">
+        <i class="fa fa-chevron-circle-left"></i></a></h4>
+  <h4>S'inscrire à un cours</h4>
+  <h4></h4>
+</div>
 
-<%= render 'form', cour: @cour %>
+<div class="mycard">
+  <%= render 'form', cour: @cour %>
 
-<%= link_to 'Back', cours_path %>
+  <%= link_to 'Back', student_path(@student) %>
+</div>

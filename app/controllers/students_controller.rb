@@ -2,8 +2,13 @@ class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   before_action :set_adherent, only: [:query, :querytwo, :yes, :new]
 
-   def index
-    @students = Student.order('first_name')
+  def index
+    if params[:query].present?
+      sql_query = "first_name ILIKE :query OR last_name ILIKE :query"
+      @students = Student.where(sql_query, query: "%#{params[:query]}%").order('first_name')
+    else
+      @students = Student.order('first_name')
+    end
   end
 
   def show

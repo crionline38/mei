@@ -1,6 +1,9 @@
-<h1>Editing Cour</h1>
-
-<%= render 'form', cour: @cour %>
-
-<%= link_to 'Show', @cour %> |
-<%= link_to 'Back', cours_path %>
+<div class="title">
+  <h4><a href="#" onClick="history.go(-1);return true;">
+        <i class="fa fa-chevron-circle-left"></i></a></h4>
+  <h4>Modifier le cour de <%= @student.last_name %> <%= @cour.year.name %> </h4>
+  <h5></h5>
+</div>
+<div class="mycard">
+  <%= render 'form', cour: @cour %>
+</div>

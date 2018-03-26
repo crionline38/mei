@@ -1,6 +1,6 @@
 class CoursController < ApplicationController
   before_action :set_cour, only: [:show, :edit, :update, :destroy]
-  before_action :set_student, only: [:new, :edit, :update]
+  before_action :set_student, only: [:new, :edit, :update, :create, :destroy]
 
   # GET /cours
   # GET /cours.json
@@ -26,29 +26,20 @@ class CoursController < ApplicationController
   # POST /cours.json
   def create
     @cour = Cour.new(cour_params)
-
-    respond_to do |format|
       if @cour.save
-        format.html { redirect_to @cour, notice: 'Cour was successfully created.' }
-        format.json { render :show, status: :created, location: @cour }
+        redirect_to @student, notice: 'Pré inscription au cour enregistrée.'
       else
-        format.html { render :new }
-        format.json { render json: @cour.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /cours/1
   # PATCH/PUT /cours/1.json
   def update
-    respond_to do |format|
-      if @cour.update(cour_params)
-        format.html { redirect_to @cour, notice: 'Cour was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cour }
-      else
-        format.html { render :edit }
-        format.json { render json: @cour.errors, status: :unprocessable_entity }
-      end
+    if @cour.update(cour_params)
+      redirect_to @student, notice: 'Inscription au cour modifié.'
+    else
+      render :edit
     end
   end
 
@@ -56,10 +47,7 @@ class CoursController < ApplicationController
   # DELETE /cours/1.json
   def destroy
     @cour.destroy
-    respond_to do |format|
-      format.html { redirect_to cours_url, notice: 'Cour was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to @student, notice: 'Cour effacé.'
   end
 
   private
@@ -72,6 +60,6 @@ class CoursController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def cour_params
-      params.require(:cour).permit(:student_id, :discipline_id, :instrument_id, :user_id)
+      params.require(:cour).permit(:student_id, :discipline_id, :instrument_id, :user_id, :year_id)
     end
 end
