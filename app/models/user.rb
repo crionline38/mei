@@ -16,6 +16,10 @@ class User < ApplicationRecord
   has_many :cours
   has_many :adhesions
   has_many :years, through: :adhesions
+  has_many :crenaus
+  def fullname
+    self.first_name.capitalize + " " + self.last_name.capitalize
+  end
 
   private
 

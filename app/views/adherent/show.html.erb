@@ -19,9 +19,6 @@
       Téléphone : <%= @adherent.tel1 %><br/>
       Téléphone 2 : <%= @adherent.tel2 %></p>
       <%= link_to "modifier", edit_adherent_path %>
-    </div>
-
-    <div class="col s12 l6 padding">
       <h5><u>Situation administrative</u></h5><%= @saison.name %><br/>
       <% if @adherent.years.include?(@saison) %>
         Adhérent
@@ -29,6 +26,47 @@
         Non adhérent
         <%= link_to "Adhérer", new_adherent_adhesion_path(@adherent), class: "fa fa-user" %>
       <% end %>
+    </div>
+
+    <div class="col s12 l6 padding">
+
+      <% if @adherent.function.name == "Professeur" %>
+        <div class="myflex">
+          <h5><u>Crénaux</u></h5>
+          <%= link_to new_adherent_crenau_path(@adherent) do %>
+            <h4><i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter un créneau"></i></h4>
+          <% end %>
+        </div>
+        <table class="striped responsive-table">
+          <thead>
+            <tr>
+              <th>Jour</th>
+              <th>DE</th>
+              <th>A</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @crenaus.each do |crenau| %>
+          <% title = "#{crenau.discipline.name} - #{crenau.instrument.name} - #{@recurences[crenau.recurence]}" %>
+            <tr title= '<%= title %>' class="<%= crenau.valide %>">
+              <td><%= crenau.jour %></td>
+              <td><%= crenau.start.strftime("%H:%M") %></td>
+              <td><%= crenau.end.strftime("%H:%M")  %></td>
+              <td><%= link_to edit_adherent_crenau_path(crenau.user, crenau), class: "secondary-content" do %>
+                  <i class="fa fa-info-circle" aria-hidden="true" title="Détails"></i>
+                <% end %></td>
+
+              <td><%= link_to adherent_crenau_path(crenau.user, crenau), class: "secondary-content", method: :delete, data: { confirm: "Supprimer le créneau?" } do %>
+                <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
+              <% end %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+      <% end %>
+
     </div>
 </div>
   </div>

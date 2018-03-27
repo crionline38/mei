@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215095721) do
+ActiveRecord::Schema.define(version: 20180327085335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,24 @@ ActiveRecord::Schema.define(version: 20180215095721) do
     t.index ["student_id"], name: "index_cours_on_student_id", using: :btree
     t.index ["user_id"], name: "index_cours_on_user_id", using: :btree
     t.index ["year_id"], name: "index_cours_on_year_id", using: :btree
+  end
+
+  create_table "crenaus", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "year_id"
+    t.boolean  "valide",        default: false
+    t.integer  "discipline_id"
+    t.integer  "instrument_id"
+    t.string   "jour"
+    t.integer  "recurence"
+    t.time     "start"
+    t.time     "end"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["discipline_id"], name: "index_crenaus_on_discipline_id", using: :btree
+    t.index ["instrument_id"], name: "index_crenaus_on_instrument_id", using: :btree
+    t.index ["user_id"], name: "index_crenaus_on_user_id", using: :btree
+    t.index ["year_id"], name: "index_crenaus_on_year_id", using: :btree
   end
 
   create_table "disciplines", force: :cascade do |t|
@@ -143,6 +161,10 @@ ActiveRecord::Schema.define(version: 20180215095721) do
   add_foreign_key "cours", "students"
   add_foreign_key "cours", "users"
   add_foreign_key "cours", "years"
+  add_foreign_key "crenaus", "disciplines"
+  add_foreign_key "crenaus", "instruments"
+  add_foreign_key "crenaus", "users"
+  add_foreign_key "crenaus", "years"
   add_foreign_key "instruds", "disciplines"
   add_foreign_key "instruds", "instruments"
   add_foreign_key "students", "users"

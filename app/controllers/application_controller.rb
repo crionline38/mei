@@ -15,5 +15,12 @@ class ApplicationController < ActionController::Base
   def testsaison
       session['saison'] = params['saison'].to_i if params['saison']
       session['saison'] ? @saison = Year.find(session['saison'].to_i) : @saison = Year.all.order('name').last
+      @jours ="Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche".split(' ')
+      @recurences ="Toutes les semaines,Semaines paires,Semaines impaires,Une seule fois".split(',')
+      if current_user
+        p @auth = ["Bureau", "Secrétaire", "Trésorier", "Président", "Admin"].include?(current_user.function.name)
+      else
+        p @auth = false
+      end
   end
 end

@@ -9,7 +9,7 @@
     %>
   <% end %>
   <h4><%= link_to new_adherent_path do  %>
-  <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter un adhérent"></i>
+    <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter un adhérent"></i>
   <% end %></h4>
 </div>
 <div class="mycard">
@@ -30,15 +30,13 @@
           <td><%= adherent.last_name %></td>
           <td><%= adherent.function.name %></td>
           <td><%= adherent.years.include?(@saison) %></td>
-          <td>
-            <%= link_to adherent_path(adherent), class: "secondary-content" do %>
+          <td><%= link_to adherent_path(adherent), class: "secondary-content" do %>
               <i class="fa fa-info-circle" aria-hidden="true" title="Détails"></i>
             <% end %></td>
 
-            <td><%= link_to adherent_path(adherent), class: "secondary-content", method: :delete, data: { confirm: "Supprimer l'adherent?" } do %>
-              <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
-            <% end %>
-          </td>
+          <td><%= link_to adherent_path(adherent), class: "secondary-content", method: :delete, data: { confirm: "Supprimer l'adherent?" } do %>
+            <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
+          <% end %></td>
         </tr>
       <% end %>
     </tbody>

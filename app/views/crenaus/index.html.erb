@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Crenaus</h1>
+
+<table class="striped responsive-table">
+  <thead>
+    <tr>
+      <th>Prof</th>
+      <th>Year</th>
+      <th>Valide</th>
+      <th>Discipline</th>
+      <th>Instrument</th>
+      <th>Jour</th>
+      <th>Recurence</th>
+      <th>Start</th>
+      <th>End</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @crenaus.each do |crenau| %>
+      <tr>
+        <td><%= crenau.prof %></td>
+        <td><%= crenau.year %></td>
+        <td><%= crenau.valide %></td>
+        <td><%= crenau.discipline %></td>
+        <td><%= crenau.instrument %></td>
+        <td><%= crenau.jour %></td>
+        <td><%= crenau.recurence %></td>
+        <td><%= crenau.start %></td>
+        <td><%= crenau.end %></td>
+        <td><%= link_to 'Show', crenau %></td>
+        <td><%= link_to 'Edit', edit_crenau_path(crenau) %></td>
+        <td><%= link_to 'Destroy', crenau, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

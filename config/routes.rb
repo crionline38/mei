@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   end
   resources :adherent do
+    resources :crenaus
     resources :adhesions, only: [:new, :update]
     resources :students
     get 'query', to: 'students#query'

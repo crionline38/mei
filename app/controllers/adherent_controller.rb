@@ -57,6 +57,7 @@ class AdherentController < ApplicationController
   end
 
   def show
+    @crenaus = Crenau.where("year_id = '#{@saison.id}' AND user_id = '#{@adherent.id}'")
   end
 
   def profile

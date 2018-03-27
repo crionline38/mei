@@ -1,0 +1,41 @@
+<%= simple_form_for [@adherent, @crenau], url: @path do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="col s6">
+        <%= f.association :user, collection: @usercollection, label_method: :fullname, label: "Professeur", selected: f.object.user.id %>
+        <%= f.input :jour, collection: @jours, selected: f.object.jour %>
+        <%= f.association :discipline, label: "Formule", collection: Discipline.where(valide: true) %>
+  <div class="form-actions">
+    <%= f.button :submit, value: "Sauvegarder" %>
+  </div>
+      </div>
+      <div class="col s6">
+        <%= f.input :recurence, collection: @recurences, selected: @crenau.recurence %>
+        <div class="col s6">
+          <%= f.label :start, 'De', class: 'active', value: "test" %>
+          <%= f.text_field :start, value: crenau.start.strftime("%H:%M"), :class => "timepicker" %>
+        </div>
+        <div class="col s6">
+          <%= f.label :start, 'A', class: 'active' %>
+          <%= f.text_field :end, value: crenau.end.strftime("%H:%M"), :class => "timepicker" %>
+        </div>
+        <%= f.association :instrument, collection: Instrument.where(valide: true) %>
+<% if @auth %>
+        <input type="checkbox" id="test5" name="crenau[valide]"
+          <%= "checked" if crenau.valide == true %> onclick="
+          getElementById('crenau_valide').value = document.getElementById('test5').checked;"/>
+        <label for="test5">Créneau validé</label>
+        <input value="<%= crenau.valide %>" type="hidden" name="crenau[valide]" id="crenau_valide">
+
+<% end %>
+      </div>
+    </div>
+
+    <div class="hidden">
+      <%= f.association :year, collection: [@saison], label: "Saison", selected: 1 %>
+    </div>
+  </div>
+
+<% end %>
