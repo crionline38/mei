@@ -1,7 +1,7 @@
 <div class="title">
   <h4><a href="#" onClick="history.go(-1);return true;">
         <i class="fa fa-chevron-circle-left"></i></a></h4>
-  <h4>Disciplines</h4>
+  <h4>Formules</h4>
   <h4><%= link_to new_discipline_path do  %>
   <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter une discipline"></i>
   <% end %></h4>
@@ -26,18 +26,13 @@
 
     <tbody>
       <% @disciplines.each do |discipline| %>
-        <tr>
+        <tr class="pointer" onclick="location.href='<%= edit_discipline_path(discipline) %>'">
           <td><%= discipline.name %></td>
           <td><%= discipline.duree %></td>
           <td><%= discipline.frequence.name %></td>
           <td><%= discipline.tarif.a %></td>
           <td><%= discipline.tarif.b %></td>
           <td><%= discipline.tarif.c %></td>
-          <td>
-            <%= link_to edit_discipline_path(discipline), class: "secondary-content" do %>
-              <i class="fa fa-info-circle" aria-hidden="true" title="Détails"></i>
-            <% end %></td>
-
             <td><%= link_to discipline, class: "secondary-content", method: :delete, data: { confirm: "Supprimer la discipline?" } do %>
               <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
             <% end %>

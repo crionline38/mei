@@ -1,16 +1,14 @@
 <div class="title">
+
   <h4><a href="#" onClick="history.go(-1);return true;">
-        <i class="fa fa-chevron-circle-left"></i></a> <%= @title %></h4>
-     <%= form_tag adherent_index_path, method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Rechercher un membre"
-    %>
-  <% end %>
-  <h4><%= link_to new_adherent_path do  %>
-    <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter un adhérent"></i>
-  <% end %></h4>
+    <i class="fa fa-chevron-circle-left"></i></a> <%= @title %></h4>
+
+    <%= form_tag adherent_index_path, method: :get do %>
+      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Rechercher un membre" %>
+    <% end %>
+
+  <h4><%= link_to fa_icon('plus-circle'), "#{new_adherent_path}?role=#{@link}", title: "Ajouter un #{@title[0...-1]}" if @auth %></h4>
+
 </div>
 <div class="mycard">
   <table class="striped responsive-table">
@@ -19,21 +17,15 @@
         <th>Nom</th>
         <th>Prénom</th>
         <th>Fonction</th>
-        <th>Adhérent?</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <% @adherents.each do |adherent| %>
-        <tr>
+        <tr class="<%= adherent.years.include?(@saison) %> pointer" onclick="location.href='<%= adherent_path(adherent) %>'">
           <td><%= adherent.first_name %></td>
           <td><%= adherent.last_name %></td>
           <td><%= adherent.function.name %></td>
-          <td><%= adherent.years.include?(@saison) %></td>
-          <td><%= link_to adherent_path(adherent), class: "secondary-content" do %>
-              <i class="fa fa-info-circle" aria-hidden="true" title="Détails"></i>
-            <% end %></td>
-
           <td><%= link_to adherent_path(adherent), class: "secondary-content", method: :delete, data: { confirm: "Supprimer l'adherent?" } do %>
             <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
           <% end %></td>

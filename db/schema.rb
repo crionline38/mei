@@ -18,8 +18,9 @@ ActiveRecord::Schema.define(version: 20180327085335) do
   create_table "adhesions", force: :cascade do |t|
     t.integer  "year_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "pay",        default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_adhesions_on_user_id", using: :btree
     t.index ["year_id"], name: "index_adhesions_on_year_id", using: :btree
   end
@@ -45,12 +46,12 @@ ActiveRecord::Schema.define(version: 20180327085335) do
     t.boolean  "valide",        default: false
     t.integer  "discipline_id"
     t.integer  "instrument_id"
-    t.string   "jour"
-    t.integer  "recurence"
-    t.time     "start"
-    t.time     "end"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "jour",          default: 0
+    t.integer  "recurence",     default: 0
+    t.time     "start",         default: '2000-01-01 00:00:00'
+    t.time     "end",           default: '2000-01-01 00:00:00'
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.index ["discipline_id"], name: "index_crenaus_on_discipline_id", using: :btree
     t.index ["instrument_id"], name: "index_crenaus_on_instrument_id", using: :btree
     t.index ["user_id"], name: "index_crenaus_on_user_id", using: :btree
@@ -62,10 +63,10 @@ ActiveRecord::Schema.define(version: 20180327085335) do
     t.integer  "duree"
     t.integer  "frequence_id"
     t.integer  "tarif_id"
-    t.boolean  "valide"
+    t.boolean  "valide",       default: true
     t.boolean  "fm"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["frequence_id"], name: "index_disciplines_on_frequence_id", using: :btree
     t.index ["tarif_id"], name: "index_disciplines_on_tarif_id", using: :btree
   end
@@ -91,9 +92,9 @@ ActiveRecord::Schema.define(version: 20180327085335) do
 
   create_table "instruments", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "valide"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "valide",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "students", force: :cascade do |t|
@@ -111,9 +112,9 @@ ActiveRecord::Schema.define(version: 20180327085335) do
     t.float    "a"
     t.float    "b"
     t.float    "c"
-    t.boolean  "valide"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "valide",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -141,7 +142,7 @@ ActiveRecord::Schema.define(version: 20180327085335) do
     t.string   "address2"
     t.string   "zipcode"
     t.string   "city"
-    t.integer  "function_id"
+    t.integer  "function_id",            default: 1
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["function_id"], name: "index_users_on_function_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
@@ -149,9 +150,9 @@ ActiveRecord::Schema.define(version: 20180327085335) do
 
   create_table "years", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "valide"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "valide",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_foreign_key "adhesions", "users"

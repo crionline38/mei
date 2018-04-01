@@ -6,10 +6,10 @@ class CreateCrenaus < ActiveRecord::Migration[5.0]
       t.boolean :valide, :default => false
       t.references :discipline, foreign_key: true
       t.references :instrument, foreign_key: true
-      t.string :jour
-      t.integer :recurence
-      t.time :start
-      t.time :end
+      t.integer :jour, :default => 0
+      t.integer :recurence, :default => 0
+      t.time :start, :default => "00:00"
+      t.time :end, :default => "00:00"
 
       t.timestamps
     end

@@ -26,5 +26,5 @@
           </div>
         </div>
 
-<%= @f.collection_select(:function_id, Function.all, :id, :name, {:class=>'visible'}) %>
+      <%= @f.collection_select(:function_id, Function.all.reverse, :id, :name, {:class=>'visible'}) if @auth %>
 

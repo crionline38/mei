@@ -12,24 +12,29 @@
       <%= select_tag "saison", options_from_collection_for_select(Year.all.order('name').reverse, "id", "name", @saison.id), :onChange=>"javascript: window.location.href = `?saison=${this.value}`;" %>
       <!-- Links when logged in -->
       <ul id="dropdown2" class="dropdown-content dropdown">
-        <li><%= link_to "Bureau", bureau_path, class: "fa fa-user" %></li>
-        <li><%= link_to "Professeurs", profs_path, class: "fa fa-user" %></li>
-        <li><%= link_to "Adhérents", adherent_index_path, class: "fa fa-user" %></li>
-        <li><%= link_to "Elèves", students_path, class: "fa fa-user" %></li>
+        <li><%= link_to " Bureau", bureau_path, class: "fa fa-users" %></li>
+        <li><%= link_to " Professeurs", profs_path, class: "fa fa-user-secret" %></li>
+        <li><%= link_to " Adhérents", adherent_index_path, class: "fa fa-user-circle" %></li>
+        <li><%= link_to " Elèves", students_path, class: "fa fa-graduation-cap" %></li>
       </ul>
       <a class="dropdown-button waves-effect waves-light btn" href="#!" data-activates="dropdown2">Membres</a>
 
       <ul id="dropdown3" class="dropdown-content dropdown">
-        <li><%= link_to "Disciplines", disciplines_path, class: "fa fa-user" %></li>
-        <li><%= link_to "Tarifs", tarifs_path, class: "fa fa-user" %></li>
-        <li><%= link_to "Instruments", instruments_path, class: "fa fa-user" %></li>
+        <li><%= link_to " Instruments", instruments_path, class: "fa fa-music" %></li>
+        <li><%= link_to " Formules", disciplines_path, class: "fa fa-server" %></li>
+        <li><%= link_to " Tarifs", tarifs_path, class: "fa fa-bitcoin" %></li>
         <li class="divider"></li>
-        <li><%= link_to "Saisons", years_path, class: "fa fa-user" %></li>
+        <li><%= link_to " Saisons", years_path, class: "fa fa-black-tie" %></li>
       </ul>
       <a class="dropdown-button waves-effect waves-light btn" href="#!" data-activates="dropdown3">Paramètres</a>
 
+      <ul id="dropdown4" class="dropdown-content dropdown">
+        <li><%= link_to " Créneaux", crenaus_path, class: "fa fa-calendar" %></li>
+        <li><%= link_to " Inscriptions", "#", class: "fa fa-info" %></li>
+      </ul>
+      <a class="dropdown-button waves-effect waves-light btn" href="#!" data-activates="dropdown4">Cours</a>
 
-      <%= link_to "Cours", "#", class: "waves-effect waves-light btn" %>
+
       <%= link_to "Profile", adherent_path(current_user), class: "waves-effect waves-light btn" %>
       <!-- Dropdown Structure -->
       <ul id="dropdown1" class="dropdown-content dropdown">

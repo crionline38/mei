@@ -5,7 +5,7 @@ class CreateDisciplines < ActiveRecord::Migration[5.0]
       t.integer :duree
       t.references(:frequence)
       t.references(:tarif)
-      t.boolean :valide
+      t.boolean :valide, :default => true
       t.boolean :fm
       t.timestamps
     end

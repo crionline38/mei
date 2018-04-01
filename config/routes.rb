@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
 
 
-  resources :years
-  resources :instruments
-  resources :tarifs
-  resources :disciplines
+  resources :years, except: [:show]
+  resources :instruments, except: [:show]
+  resources :tarifs, except: [:show]
+  resources :disciplines, except: [:show]
 
   resources :students do
     resources :cours
-
   end
+  resources :crenaus
   resources :adherent do
-    resources :crenaus
     resources :adhesions, only: [:new, :update]
     resources :students
     get 'query', to: 'students#query'

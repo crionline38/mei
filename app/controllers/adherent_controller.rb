@@ -10,23 +10,28 @@ class AdherentController < ApplicationController
       @title = "Adhérents"
       @adherents = User.joins(:years).where(years: {name: @saison.name}).order('first_name DESC')
     end
+    @link = "Adhérent"
     render "index"
   end
 
   def bureau
-    @title = "Bureau"
+    @title = "Membre du bureau "
+    @link = "Bureau"
     @adherents = User.joins(:function).where("functions.name = 'Président' OR functions.name = 'Trésorier' OR functions.name = 'Secrétaire' OR functions.name = 'Bureau'").order('function_id').reverse
     render "index"
   end
 
   def profs
     @title = "Professeurs"
+    @link = "Professeur"
     @adherents = User.joins(:function).where(functions: {name: "Professeur"}).order('first_name')
     render "index"
   end
 
   def new
+    params['role'] ? @role = params['role'] : @role = "Adhérent"
     @adherent = User.new
+    @adherent.function = Function.find_by(name: @role)
   end
 
   def create
@@ -58,6 +63,7 @@ class AdherentController < ApplicationController
 
   def show
     @crenaus = Crenau.where("year_id = '#{@saison.id}' AND user_id = '#{@adherent.id}'")
+    @adhesion = Adhesion.find_by(user: current_user, year: @saison)
   end
 
   def profile

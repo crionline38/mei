@@ -1,31 +1,19 @@
 class TarifsController < ApplicationController
   before_action :set_tarif, only: [:show, :edit, :update, :destroy]
 
-  # GET /tarifs
-  # GET /tarifs.json
   def index
     @tarifs = Tarif.where(valide: true).order('name')
   end
 
-  # GET /tarifs/1
-  # GET /tarifs/1.json
-  def show
-  end
-
-  # GET /tarifs/new
   def new
     @tarif = Tarif.new
   end
 
-  # GET /tarifs/1/edit
   def edit
   end
 
-  # POST /tarifs
-  # POST /tarifs.json
   def create
     @tarif = Tarif.new(tarif_params)
-    @tarif.valide = true
     if @tarif.save
       redirect_to tarifs_path, notice: 'Tarif crée.'
     else
@@ -33,8 +21,6 @@ class TarifsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tarifs/1
-  # PATCH/PUT /tarifs/1.json
   def update
     if @tarif.update(tarif_params)
       redirect_to tarifs_path, notice: 'Tarif updaté.'
@@ -43,8 +29,6 @@ class TarifsController < ApplicationController
     end
   end
 
-  # DELETE /tarifs/1
-  # DELETE /tarifs/1.json
   def destroy
     @tarif.valide = false
     @tarif.save

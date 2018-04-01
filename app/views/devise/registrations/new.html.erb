@@ -1,53 +1,31 @@
 <div class="title">
   <h4><a href="#" onClick="history.go(-1);return true;">
         <i class="fa fa-chevron-circle-left"></i></a></h4>
-  <h4>Nouvel adhérent</h4>
+  <h4>S'inscrire à Musique en L'Isle</h4>
   <h4></h4>
 </div>
 
 <div class="mycard">
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <% @f=f %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
-        <div class="col x12 l4">
-          <%= f.input :email, required: true, autofocus: true %>
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-          <%= f.input :password_confirmation, required: true %>
+      <div class="row">
+        <div class="col s4 separator padding">
+
+          <%= @f.input :email, required: true, autofocus: true %>
+          <%= @f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= @f.input :password_confirmation, required: true %>
           <br/><br/>
           <div class="form-actions">
-            <%= f.button :submit, "Enregistrer" %>
+            <%= @f.button :submit, "Enregistrer" %>
           </div>
         </div>
-        <div class="col x12 l8">
-          <div class="myflex">
-            <div class="twocol">
-              <%= f.input :first_name, label: 'Nom', required: true %>
-            </div>
-            <div class="twocol">
-              <%= f.input :last_name, label: 'Prénom', required: true %>
-            </div>
-          </div>
-          <%= f.input :address, label: 'Adresse', required: true  %>
-          <%= f.input :address2, label: 'Adresse 2' %>
-          <div class="myflex">
-            <div class="tiercol">
-              <%= f.input :zipcode, label: 'Code postal', required: true %>
-            </div>
-            <div class="restcol">
-              <%= f.input :city, label: 'Ville', placeholder: 'Ville', required: true %>
-            </div>
-          </div>
-          <div class="myflex">
-            <div class="twocol">
-              <%= f.input :tel1, label: 'Téléphone 1', required: true %>
-            </div>
-            <div class="twocol">
-              <%= f.input :tel2, label: 'Téléphone 2' %>
-            </div>
+        <div class="col s8 padding">
+          <%= render 'adherent/form' %>
+        </div>
 
-          </div>
-          <%= f.collection_select(:function_id, [Function.first], :id, :name) %>
       </div>
     </div>
 

@@ -14,23 +14,17 @@
         <th>+ de 20 ans</th>
         <th>9 - 20 ans</th>
         <th>6 - 8 ans</th>
-        <th colspan="3"></th>
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
       <% @tarifs.each do |tarif| %>
-        <tr>
+        <tr class="pointer" onclick="location.href='<%= edit_tarif_path(tarif) %>'">
           <td><%= tarif.name %></td>
           <td><%= number_to_currency(tarif.a) %></td>
           <td><%= number_to_currency(tarif.b) %></td>
           <td><%= number_to_currency(tarif.c) %></td>
-          <td>
-            <%= link_to edit_tarif_path(tarif), class: "secondary-content" do %>
-              <i class="material-icons">mode_edit</i>
-              <i class="fa fa-pencil-alt" aria-hidden="true" title="Détails"></i>
-            <% end %></td>
-
             <td><%= link_to tarif_path(tarif), class: "secondary-content", method: :delete, data: { confirm: "Supprimer le tarif?" } do %>
               <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
             <% end %>

@@ -5,7 +5,7 @@ class CreateTarifs < ActiveRecord::Migration[5.0]
       t.float :a
       t.float :b
       t.float :c
-      t.boolean :valide
+      t.boolean :valide, :default => true
 
       t.timestamps
     end

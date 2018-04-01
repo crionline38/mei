@@ -29,8 +29,12 @@ em = Discipline.create({name: "Eveil musical (5/6 ans)",
                                duree:"30", frequence: hebdo,
                                tarif: eveil,
                                valide: true, fm: false})
-instru = Discipline.create({name: "Instrument + FM",
+instru = Discipline.create({name: "Instrument + FM hebdomadaire",
                                duree:"30", frequence: hebdo,
+                               tarif: instrument,
+                               valide: true, fm: true})
+instrub = Discipline.create({name: "Instrument + FM bimensuel",
+                               duree:"60", frequence: bi,
                                tarif: instrument,
                                valide: true, fm: true})
 bat = Discipline.create({name: "Batterie",
@@ -66,11 +70,19 @@ chant = Instrument.create({name: "Chant",valide: true})
 
 Instrud.destroy_all
 Instrud.create({instrument: evm, discipline: em})
+
 Instrud.create({instrument: gm, discipline: instru})
 Instrud.create({instrument: gc, discipline: instru})
 Instrud.create({instrument: pm, discipline: instru})
 Instrud.create({instrument: pc, discipline: instru})
 Instrud.create({instrument: sax, discipline: instru})
+
+Instrud.create({instrument: gm, discipline: instrub})
+Instrud.create({instrument: gc, discipline: instrub})
+Instrud.create({instrument: pm, discipline: instrub})
+Instrud.create({instrument: pc, discipline: instrub})
+Instrud.create({instrument: sax, discipline: instrub})
+
 Instrud.create({instrument: drums, discipline: bat})
 Instrud.create({instrument: chant, discipline: voci})
 Instrud.create({instrument: chant, discipline: vocc})
@@ -82,8 +94,6 @@ Instrud.create({instrument: pc, discipline: atelier})
 Instrud.create({instrument: sax, discipline: atelier})
 Instrud.create({instrument: drums, discipline: atelier})
 Instrud.create({instrument: chant, discipline: atelier})
-Instrud.create({instrument: chant, discipline: atelier})
-
 
 Year.destroy_all
 y16 = Year.create({name: "2015/2016", valide: true})

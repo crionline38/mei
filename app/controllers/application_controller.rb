@@ -18,9 +18,9 @@ class ApplicationController < ActionController::Base
       @jours ="Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche".split(' ')
       @recurences ="Toutes les semaines,Semaines paires,Semaines impaires,Une seule fois".split(',')
       if current_user
-        p @auth = ["Bureau", "Secrétaire", "Trésorier", "Président", "Admin"].include?(current_user.function.name)
+        @auth = ["Bureau", "Secrétaire", "Trésorier", "Président", "Admin"].include?(current_user.function.name) || current_user.email == "maildecri@gmail.com"
       else
-        p @auth = false
+        @auth = false
       end
   end
 end

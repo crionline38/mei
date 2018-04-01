@@ -6,8 +6,6 @@
 // External libraries
 // @import "bootstrap-sprockets";
 // @import "bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
 
 // Your CSS partials
 @import "layouts/index";
@@ -16,3 +14,6 @@
 
 @import "materialize";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
