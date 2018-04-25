@@ -3,15 +3,18 @@ class StudentsController < ApplicationController
   before_action :set_adherent, only: [:query, :querytwo, :yes, :new]
 
   def index
+    @adherent = current_user
     if params[:query].present?
       sql_query = "first_name ILIKE :query OR last_name ILIKE :query"
       @students = Student.where(sql_query, query: "%#{params[:query]}%").order('first_name')
     else
       @students = Student.order('first_name')
     end
+    @students2 = Student.all
   end
 
   def show
+    @adherent = @student.user
   end
 
   def query
@@ -31,6 +34,7 @@ class StudentsController < ApplicationController
   end
 
   def edit
+    @adherent = current_user
   end
 
   def create

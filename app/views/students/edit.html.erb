@@ -1,3 +1,23 @@
+<div class="row back rowshadow">
+  <%= render 'shared/marge' %>
+  <div class="content col s12 m9">
+    <div class="myflex content-title">
+      <p><%= link_to "menu", adherent_path(@adherent) %> / <%= @student.fullname %>.<%= @student.year %></p>
+      <p>Adhérent : <%= link_to @student.user.fullname, adherent_path(@student.user) %></p>
+      <h4>Edition</h4>
+    </div>
+    <div class="content-form">
+      <%= simple_form_for @student, :url => student_path(@student), :method => :put do |f| %>
+
+        <% @f=f %>
+        <%= render 'form', student: @student %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="title">
   <h4><a href="#" onClick="history.go(-1);return true;">
         <i class="fa fa-chevron-circle-left"></i></a></h4>

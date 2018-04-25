@@ -1,0 +1,27 @@
+      <table class="striped responsive-table">
+        <thead>
+          <tr>
+            <th>Crénaux</th>
+            <th></th>
+            <th></th>
+            <th><%= link_to fa_icon("plus-circle"), "#{new_crenau_path}?prof=#{@adherent.id}", class: "secondary-content", title: "Ajouter un créneau" %></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @crenaus.each do |crenau| %>
+        <% title = "#{crenau.discipline.name} - #{crenau.instrument.name} - #{@recurences[crenau.recurence]}" %>
+          <tr title= '<%= title %>' class="<%= crenau.valide %>">
+            <td><%= crenau.jour %></td>
+            <td><%= crenau.start.strftime("%H:%M") %></td>
+            <td><%= crenau.end.strftime("%H:%M")  %></td>
+            <td><%= link_to edit_crenau_path(crenau), class: "secondary-content" do %>
+                <i class="fa fa-info-circle" aria-hidden="true" title="Détails"></i>
+              <% end %></td>
+
+            <td><%= link_to crenau_path(crenau), class: "secondary-content", method: :delete, data: { confirm: "Supprimer le créneau?" } do %>
+              <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
+            <% end %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>

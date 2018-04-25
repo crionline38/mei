@@ -4,21 +4,22 @@
         <th>Cours</th>
         <th>Instrument</th>
         <th>Année</th>
-        <th colspan="2"></th>
+        <th></th>
+        <th><%= link_to new_student_cour_path(@student) do  %>
+    <i class="fa fa-plus-circle" aria-hidden="true" title="S'inscrire à un cours"></i>
+    <% end %></th>
       </tr>
     </thead>
     <tbody>
       <% @student.cours.each do |cour| %>
         <% if @saison == cour.year %>
-          <tr>
+          <tr class="pointer" onclick="location.href='<%= edit_student_cour_path(@student, cour) %>'">
             <td><%= cour.discipline.name %></td>
             <td><%= cour.instrument.name %></td>
             <td><%= cour.year.name %></td>
-            <td><%= link_to edit_student_cour_path(@student, cour), class: "secondary-content" do %>
-                <i class="fa fa-info-circle" aria-hidden="true"></i>
-              <% end %></td>
+            <td></td>
             <td>
-              <%= link_to student_cour_path(@student, cour), class: "secondary-content", method: :delete, data: { confirm: "Supprimer le cours?" } do %>
+              <%= link_to student_cour_path(@student, cour), class: "", method: :delete, data: { confirm: "Supprimer le cours?" } do %>
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
               <% end %>
             </td>
@@ -27,3 +28,4 @@
       <% end %>
     </tbody>
   </table>
+

@@ -1,0 +1,79 @@
+<div class="title">
+  <h4><a href="#" onClick="history.go(-1);return true;">
+        <i class="fa fa-chevron-circle-left"></i></a></h4>
+  <h4>Bonjour <%= @adherent.first_name %> <%= @adherent.last_name %></h4>
+  <h5><%= @adherent.function.name %></h5>
+</div>
+
+  <div class=" col s12 m12 mycard">
+<div class="row">
+    <div class="col s12 l6 separator padding">
+      <h5><u>Informations personnelles</u></h5>
+      <p><%= @adherent.first_name %> <%= @adherent.last_name %> <br/>
+      <%= @adherent.address %><br/>
+      <% if @adherent.address2.length > 0 %>
+        <%= @adherent.address2 %><br/>
+      <% end %>
+      <%= @adherent.zipcode %> <%= @adherent.city %></p>
+      <p>Email : <%= @adherent.email %><br/>
+      Téléphone : <%= @adherent.tel1 %><br/>
+      Téléphone 2 : <%= @adherent.tel2 %></p>
+      <%= link_to "modifier", edit_adherent_path %>
+      <h5><u>Situation administrative</u></h5><%= @saison.name %><br/>
+      <% if @adherent.years.include?(@saison) %>
+        Adhérent
+      <% else %>
+        Non adhérent
+        <%= link_to "Adhérer", new_adherent_adhesion_path(@adherent), class: "fa fa-user" %>
+      <% end %>
+    </div>
+
+    <div class="col s12 l6 padding">
+
+      <% if @adherent.function.name == "Professeur" %>
+        <table class="striped responsive-table">
+          <thead>
+            <tr>
+              <th>Crénaux</th>
+              <th></th>
+              <th></th>
+              <th><%= link_to fa_icon("plus-circle"), "#{new_crenau_path}?prof=#{@adherent.id}", class: "secondary-content", title: "Ajouter un créneau" %></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @crenaus.each do |crenau| %>
+          <% title = "#{crenau.discipline.name} - #{crenau.instrument.name} - #{@recurences[crenau.recurence]}" %>
+            <tr title= '<%= title %>' class="<%= crenau.valide %>">
+              <td><%= crenau.jour %></td>
+              <td><%= crenau.start.strftime("%H:%M") %></td>
+              <td><%= crenau.end.strftime("%H:%M")  %></td>
+              <td><%= link_to edit_crenau_path(crenau), class: "secondary-content" do %>
+                  <i class="fa fa-info-circle" aria-hidden="true" title="Détails"></i>
+                <% end %></td>
+
+              <td><%= link_to crenau_path(crenau), class: "secondary-content", method: :delete, data: { confirm: "Supprimer le créneau?" } do %>
+                <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
+              <% end %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+      <% end %>
+
+    </div>
+</div>
+  </div>
+<div class="title">
+  <h4></h4>
+  <h4>Elèves :</h4>
+  <h4><%= link_to new_adherent_student_path(@adherent) do  %>
+    <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter un adhérent"></i>
+    <% end %></h4>
+</div>
+
+
+<div class=" col s12 m12 mycard">
+  <% @students = @adherent.students %>
+  <%= render 'shared/studentlist' %>
+</div>

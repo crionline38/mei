@@ -1,16 +1,20 @@
-<div class="title">
-  <h4><a href="#" onClick="history.go(-1);return true;">
-        <i class="fa fa-chevron-circle-left"></i></a> Liste d'élèves TOUTES SAISONS</h4>
-     <%= form_tag adherent_students_path(current_user), method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Rechercher un élève"
-    %>
-  <% end %>
-  <h5></h5>
-</div>
-<div class="mycard">
-  <%= render 'shared/studentlist' %>
+<div class="row back rowshadow">
+  <%= render 'shared/marge' %>
+  <div class="content col s12 m9">
+    <div class="myflex content-title">
+      <p><%= link_to "menu", adherent_path(@adherent) %> / Liste d'élèves TOUTES SAISONS</p>
+      <%= form_tag adherent_students_path(current_user), method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Rechercher un élève"
+        %>
+      <% end %>
+      <h5></h5>
+    </div>
+    <div class="content-table">
+<% p "*********************************"
+p @students %>
+   <%= render 'shared/studentslist' %>
 </div>
 

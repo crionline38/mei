@@ -3,8 +3,11 @@
 
   <div class="form-inputs">
     <div class="<%= @hidden %>">
-        <%= @f.input :first_name, label: 'Nom', :input_html => { :value => @student.user.first_name }, required: true  %>
-        <%= @f.input :last_name, label: 'Prénom', :input_html => { :value => @student.user.last_name }, required: true %>
+
+      <% @student.first_name != nil ? sname = @student.first_name : sname =  @student.user.first_name %>
+        <%= @f.input :first_name, label: 'Nom', :input_html => { :value => sname }, required: true  %>
+      <% @student.last_name != nil ? slname = @student.last_name : slname =  @student.user.last_name %>
+        <%= @f.input :last_name, label: 'Prénom', :input_html => { :value => slname }, required: true %>
     </div>
     <%= @f.input :year, label: 'Année de naissance', required: true %>
     <%= @f.association :user, :as => :hidden %>

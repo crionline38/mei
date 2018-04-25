@@ -1,0 +1,92 @@
+.back {
+  background-color: $back;
+}
+.marge {
+  text-align: center;
+  background-color: $back;
+  padding : 10px;
+  border-right: 1px solid #222;
+  box-shadow: 2px 2px 3px black;
+  h1 {
+    font-size: 18px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  .btn a {
+    text-decoration: none;
+    color: white;
+  }
+  a {
+    font-size: 16px;
+  }
+  .btn i {
+    color: white;
+  }
+}
+.rowshadow {
+  background-color: $back;
+  border: 1px solid #222;
+  box-shadow: 2px 2px 3px black;
+}
+.content {
+  padding: 0 !important;
+  h1 {
+    font-size: 20px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  .btn a {
+    text-decoration: none;
+    color: white;
+  }
+  .menu {
+    font-size: 30px;
+  }
+  a {
+    font-size: 30px;
+  }
+  li {
+    padding: 20px;
+    text-align: center;
+  }
+  tr {
+    margin: 30px;
+  }
+}
+
+.content-title {
+  color: white;
+  background-color: #111;
+  padding: 0 5px 0 5px;
+  margin: 0 !important;
+  align-items: center;
+  a {
+    font-size: 20px;
+  }
+}
+.content-form {
+  margin: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid black;
+  box-shadow: 2px 2px 3px black;
+}
+.content-table {
+  padding: 15px;
+  a {
+    font-size: 16px;
+  }
+}
+i {
+  color : $blue;
+  font-size: 30px !important;
+}
+
+table {
+  th, td {
+    font-size: 16px;
+  }
+}

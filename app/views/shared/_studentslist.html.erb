@@ -3,13 +3,11 @@
       <tr>
         <th>Nom</th>
         <th>Prénom</th>
-        <th><%= link_to new_adherent_student_path(@adherent) do  %>
-    <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter un élève"></i>
-    <% end %></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      <% @students.each do |student| %>
+      <% @students2.each do |student| %>
         <tr class="pointer" onclick="location.href='<%= student_path(student) %>'">
           <td><%= student.first_name %></td>
           <td><%= student.last_name %></td>
