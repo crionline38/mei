@@ -9,7 +9,8 @@ class CrenausController < ApplicationController
     else
       @crenaus = Crenau.where(user: current_user).rewhere(year: @saison).order(:valide)
     end
-    current_user.function.name == "Professeur" ? @prof = "?prof=#{current_user.id}" : @prof =""
+    p @adherent
+    @adherent.function.name == "Professeur" ? @prof = "?prof=#{current_user.id}" : @prof =""
   end
 
   # GET /crenaus/1

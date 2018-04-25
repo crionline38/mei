@@ -1,0 +1,70 @@
+.table-crenau {
+  margin: 20px 30px 0 10px ;
+}
+.heure {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 15px;
+    position: relative;
+}
+.heureh {
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px dotted black;
+  height: 15px;
+    position: relative;
+}
+.hrefer {
+    position: relative;
+}
+.hlabelfin {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+}
+.hlabel {
+  position: absolute;
+  top: -15px;
+  left: -10px;
+}
+.minh {
+  border-left: 1px dotted black;
+  border-top: 1px solid black;
+  border-bottom: 1px dotted black;
+    position: relative;
+}
+.min {
+  border-left: 1px dotted black;
+  border-bottom: 1px solid black;
+    position: relative;
+}
+.minfin {
+  position: relative;
+}
+.cfin {
+  border-right: 1px solid black;
+}
+.hcont {
+  padding-right: 20px;
+}
+.tjour {
+  width:10px !important;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  padding: 0 5px 0 10px !important;
+}
+.rec {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 10px !important;
+  font-size: 12px;
+}
+.divcrenau {
+  position: absolute;
+  background-color: yellow;
+  text-align: center;
+  border: 1px solid black;
+  color: black;
+  font-size: 14px;
+}

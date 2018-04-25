@@ -1,41 +1,8 @@
 <div class="row back rowshadow">
   <%= render 'shared/marge' %>
   <div class="content col s12 m9">
-    <% if @adherent.function.name == "Professeur" %>
-      <%= render 'shared/creneaux' %>
-    <% end %>
-    <% if ["Bureau", "Admin"].include?(@adherent.function.name) %>
-      <div class="content-title row">
-        <div class="col s4 center">Membres :</div>
-        <div class="col s4 center">Cours :</div>
-        <div class="col s4 center">Paramètres :</div>
-      </div>
-      <div class="row">
-        <div class="col s4 center">
-          <ul>
-            <li class="collection-item"><%= link_to " Bureau", bureau_path, class: "fa fa-users" %></li>
-            <li class="collection-item"><%= link_to " Professeurs", profs_path, class: "fa fa-user-secret" %></li>
-            <li class="collection-item"><%= link_to " Adhérents", adherent_index_path, class: "fa fa-user-circle" %></li>
-            <li class="collection-item"><%= link_to " Elèves", students_path, class: "fa fa-graduation-cap" %></li>
-          </ul>
-        </div>
-        <div class="col s4 center">
-          <ul>
-            <li class="collection-item"><%= link_to " Créneaux", crenaus_path, class: "fa fa-calendar" %></li>
-            <li class="collection-item"><%= link_to " Inscriptions", "#", class: "fa fa-info" %></li>
-          </ul>
-        </div>
-        <div class="col s4 center">
-          <ul>
-            <li class="collection-item"><%= link_to " Instruments", instruments_path, class: "fa fa-music" %></li>
-            <li class="collection-item"><%= link_to " Formules", disciplines_path, class: "fa fa-server" %></li>
-            <li class="collection-item"><%= link_to " Tarifs", tarifs_path, class: "fa fa-bitcoin" %></li>
-            <li class="collection-item"><%= link_to " Saisons", years_path, class: "fa fa-black-tie" %></li>
-          </ul>
-        </div>
-      </div>
-
-    <% end %>
+      <%= render 'shared/creneaux' if @adherent.function.name == "Professeur" %>
+      <%= render 'shared/home' if ["Bureau", "Admin"].include?(@adherent.function.name) %>
   </div>
 </div>
 

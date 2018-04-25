@@ -1,14 +1,15 @@
-<div class="row back">
+<div class="row back rowshadow ">
   <%= render 'shared/marge' %>
   <div class="content col s12 m9">
     <div class="myflex content-title">
-      <p><%= link_to "menu", adherent_path(@adherent) %> / <%= @title %></p>
+      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / <%= @title %></p>
       <%= form_tag adherent_index_path, method: :get do %>
         <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Rechercher un membre" %>
       <% end %>
       <h4><%= link_to fa_icon('plus-circle'), "#{new_adherent_path}?role=#{@link}", title: "Ajouter un #{@title[0...-1]}" if @auth %></h4>
     </div>
     <div class="content-table">
+
       <table class="striped responsive-table">
         <thead>
           <tr>
@@ -35,51 +36,4 @@
   </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-<div class="title">
-
-
-    <%= form_tag adherent_index_path, method: :get do %>
-      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Rechercher un membre" %>
-    <% end %>
-
-  <h4><%= link_to fa_icon('plus-circle'), "#{new_adherent_path}?role=#{@link}", title: "Ajouter un #{@title[0...-1]}" if @auth %></h4>
-
-</div>
-<div class="mycard">
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Fonction</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @adherents.each do |adherent| %>
-        <tr class="<%= adherent.years.include?(@saison) %> pointer" onclick="location.href='<%= adherent_path(adherent) %>'">
-          <td><%= adherent.first_name %></td>
-          <td><%= adherent.last_name %></td>
-          <td><%= adherent.function.name %></td>
-          <td><%= link_to adherent_path(adherent), class: "secondary-content", method: :delete, data: { confirm: "Supprimer l'adherent?" } do %>
-            <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
-          <% end %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-
 

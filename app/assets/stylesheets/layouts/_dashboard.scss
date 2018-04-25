@@ -1,7 +1,24 @@
 .back {
   background-color: $back;
 }
+.saison {
+  font-size: 16px !important;
+  height:30px;
+}
+.bas {
+  align-items: flex-start;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 5px
+}
+.logout {
+  font-size: 50px !important;
+}
 .marge {
+  height: auto;
+  min-height: 100% !important;
   text-align: center;
   background-color: $back;
   padding : 10px;
@@ -49,7 +66,6 @@
   }
   li {
     padding: 20px;
-    text-align: center;
   }
   tr {
     margin: 30px;
@@ -63,6 +79,9 @@
   margin: 0 !important;
   align-items: center;
   a {
+    font-size: 20px;
+  }
+  p {
     font-size: 20px;
   }
 }

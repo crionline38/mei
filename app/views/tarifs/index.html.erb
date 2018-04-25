@@ -1,36 +1,39 @@
-<div class="title">
-  <h4><a href="#" onClick="history.go(-1);return true;">
-        <i class="fa fa-chevron-circle-left"></i></a></h4>
-  <h4>Tarifs</h4>
-  <h4><%= link_to new_tarif_path do  %>
-  <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter un tarif"></i>
-  <% end %></h4>
-</div>
-<div class="mycard">
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th>Titre</th>
-        <th>+ de 20 ans</th>
-        <th>9 - 20 ans</th>
-        <th>6 - 8 ans</th>
-        <th></th>
-      </tr>
-    </thead>
+<div class="row back rowshadow">
+  <%= render 'shared/marge' %>
+  <div class="content col s12 m9">
+    <div class="myflex content-title">
+      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / Tarifs</p>
+      <h4><%= link_to fa_icon('plus-circle'), new_tarif_path, title: "Ajouter un tarif" if @auth %></h4>
+    </div>
+    <div class="row">
+      <div class="content-table">
+        <table class="striped responsive-table">
+          <thead>
+            <tr>
+              <th>Titre</th>
+              <th>+ de 20 ans</th>
+              <th>9 - 20 ans</th>
+              <th>6 - 8 ans</th>
+              <th></th>
+            </tr>
+          </thead>
 
-    <tbody>
-      <% @tarifs.each do |tarif| %>
-        <tr class="pointer" onclick="location.href='<%= edit_tarif_path(tarif) %>'">
-          <td><%= tarif.name %></td>
-          <td><%= number_to_currency(tarif.a) %></td>
-          <td><%= number_to_currency(tarif.b) %></td>
-          <td><%= number_to_currency(tarif.c) %></td>
-            <td><%= link_to tarif_path(tarif), class: "secondary-content", method: :delete, data: { confirm: "Supprimer le tarif?" } do %>
-              <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
+          <tbody>
+            <% @tarifs.each do |tarif| %>
+              <tr class="pointer" onclick="location.href='<%= edit_tarif_path(tarif) %>'">
+                <td><%= tarif.name %></td>
+                <td><%= number_to_currency(tarif.a) %></td>
+                <td><%= number_to_currency(tarif.b) %></td>
+                <td><%= number_to_currency(tarif.c) %></td>
+                  <td><%= link_to tarif_path(tarif), class: "secondary-content", method: :delete, data: { confirm: "Supprimer le tarif?" } do %>
+                    <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

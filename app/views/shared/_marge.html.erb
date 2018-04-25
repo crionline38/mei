@@ -1,4 +1,15 @@
   <div class="marge col s12 m3">
+    <div class="myflex bas">
+      <%= link_to root_path, class: "navbar-wagon-brand" do %>
+        <%= image_tag "logo.jpg", height: 50 %>
+      <% end %>
+      <%= select_tag "saison", options_from_collection_for_select(Year.all.order('name').reverse, "id", "name", @saison.id),class: "saison", :onChange=>"javascript: window.location.href = `?saison=${this.value}`;" %>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="material-icons right logout">exit_to_app</i>
+      <% end %>
+    </div>
+
+    <hr>
 
       <% if @adherent != current_user %>
         <%= link_to adherent_path(current_user), class: "waves-effect waves-light btn" do %>

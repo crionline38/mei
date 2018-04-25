@@ -1,12 +1,12 @@
-<div class="title">
-  <h4><a href="#" onClick="history.go(-1);return true;">
-        <i class="fa fa-chevron-circle-left"></i></a></h4>
-  <h4>New Instrument</h4>
-  <h4><%= link_to new_instrument_path do  %>
-  <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter un instrument"></i>
-  <% end %></h4>
-</div>
-<div class="mycard">
-
-  <%= render 'form', instrument: @instrument %>
+<div class="row back rowshadow">
+  <%= render 'shared/marge' %>
+  <div class="content col s12 m9">
+    <div class="myflex content-title">
+      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / <%= link_to "Instruments", instruments_path %> / Nouveau</p>
+      <h4></h4>
+    </div>
+    <div class="content-form">
+      <%= render 'form', instrument: @instrument %>
+    </div>
+  </div>
 </div>

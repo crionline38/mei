@@ -1,44 +1,46 @@
-<div class="title">
-  <h4><a href="#" onClick="history.go(-1);return true;">
-        <i class="fa fa-chevron-circle-left"></i></a></h4>
-  <h4>Formules</h4>
-  <h4><%= link_to new_discipline_path do  %>
-  <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter une discipline"></i>
-  <% end %></h4>
-</div>
+<div class="row back rowshadow">
+  <%= render 'shared/marge' %>
+  <div class="content col s12 m9">
+    <div class="myflex content-title">
+      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / Formules</p>
+      <h4><%= link_to fa_icon('plus-circle'), new_discipline_path, title: "Ajouter une formule" if @auth %></h4>
+    </div>
+    <div class="row">
+      <div class="content-table">
+        <table class="striped responsive-table">
+          <thead>
+            <tr>
+              <th colspan="3"></th>
+              <th colspan="3" class="center">Tarifs</th>
+            </tr>
+            <tr>
+              <th>Nom</th>
+              <th>Durée en min</th>
+              <th>Frequence</th>
+              <th>+20 ans</th>
+              <th>9/20 ans</th>
+              <th>6/8 ans</th>
+            </tr>
+          </thead>
 
-<div class="mycard">
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th colspan="3"></th>
-        <th colspan="3" class="center">Tarifs</th>
-      </tr>
-      <tr>
-        <th>Nom</th>
-        <th>Durée en min</th>
-        <th>Frequence</th>
-        <th>+20 ans</th>
-        <th>9/20 ans</th>
-        <th>6/8 ans</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @disciplines.each do |discipline| %>
-        <tr class="pointer" onclick="location.href='<%= edit_discipline_path(discipline) %>'">
-          <td><%= discipline.name %></td>
-          <td><%= discipline.duree %></td>
-          <td><%= discipline.frequence.name %></td>
-          <td><%= discipline.tarif.a %></td>
-          <td><%= discipline.tarif.b %></td>
-          <td><%= discipline.tarif.c %></td>
-            <td><%= link_to discipline, class: "secondary-content", method: :delete, data: { confirm: "Supprimer la discipline?" } do %>
-              <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
+          <tbody>
+            <% @disciplines.each do |discipline| %>
+              <tr class="pointer" onclick="location.href='<%= edit_discipline_path(discipline) %>'">
+                <td><%= discipline.name %></td>
+                <td><%= discipline.duree %></td>
+                <td><%= discipline.frequence.name %></td>
+                <td><%= discipline.tarif.a %></td>
+                <td><%= discipline.tarif.b %></td>
+                <td><%= discipline.tarif.c %></td>
+                  <td><%= link_to discipline, class: "secondary-content", method: :delete, data: { confirm: "Supprimer la discipline?" } do %>
+                    <i class="fa fa-trash-o" aria-hidden="true" title="Supprimer"></i>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

@@ -16,7 +16,9 @@
 .dropdown{
   margin-top: 100px;
 }
-
+.dropdown2 {
+  width: 350px !important;
+}
 #toast-container {
   top: 75px !important;
   right:0px !important;
@@ -39,6 +41,10 @@ label {
 .myflex {
   display: flex;
   justify-content: space-between;
+}
+.myflex2 {
+  display: flex;
+  justify-content: space-around;
 }
 .mygrow {
   flex-grow:1;

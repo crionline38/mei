@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def testsaison
+      @adherent = current_user
       session['saison'] = params['saison'].to_i if params['saison']
       session['saison'] ? @saison = Year.find(session['saison'].to_i) : @saison = Year.all.order('name').last
       @jours ="Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche".split(' ')

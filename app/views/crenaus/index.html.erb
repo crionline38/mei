@@ -1,43 +1,18 @@
-<div class="title">
-  <h4><a href="#" onClick="history.go(-1);return true;">
-    <%= fa_icon("chevron-circle-left") %></a></h4>
-  <h4>Créneaux</h4>
-  <h4><%= link_to fa_icon("plus-circle"), "#{new_crenau_path}#{@prof}" if @auth %></h4>
-</div>
+<div class="row back rowshadow">
+  <div class="content col s12">
+    <div class="myflex content-title">
+      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / Créneaux</p>
+      <h4><%= link_to fa_icon('plus-circle'), "#{new_crenau_path}#{@prof}", title: "Ajouter un créneau" if @auth %></h4>
+    </div>
+    <div class="row">
+    </div>
 
-<div class="mycard">
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th>Prof</th>
-        <th>Jour</th>
-        <th>Recurence</th>
-        <th>Instrument</th>
-        <th>Discipline</th>
-        <th>DE</th>
-        <th>A</th>
-        <th colspan="1"></th>
-      </tr>
-    </thead>
+<%= render 'shared/tablecrenau' %>
 
-    <tbody>
-      <% @crenaus.each do |crenau| %>
-        <tr class="<%= crenau.valide %> pointer" onclick="location.href='<%= edit_crenau_path(crenau) %>'">
-
-
-          <td><%= crenau.user.fullname %></td>
-
-          <td><%= @jours[crenau.jour] %></td>
-          <td><%= @recurences[crenau.recurence] %></td>
-          <td><%= crenau.instrument.name %></td>
-          <td><%= crenau.discipline.name %></td>
-          <td><%= crenau.start.strftime("%H:%M") %></td>
-          <td><%= crenau.end.strftime("%H:%M") %></td>
-          <td><%= link_to fa_icon("trash-o"), crenau_path(crenau), method: :delete, data: { confirm: 'Supprimer le créneau?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+      <div class="content-table">
+<%= render 'shared/oneshootcrenau' %>
+      </div>
+  </div>
 
 </div>
 

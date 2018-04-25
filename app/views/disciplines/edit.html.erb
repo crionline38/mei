@@ -1,10 +1,14 @@
-<div class="title">
-  <h4><a href="#" onClick="history.go(-1);return true;">
-        <i class="fa fa-chevron-circle-left"></i></a></h4>
-  <h4>Modifier la Formule</h4>
-  <h4></h4>
-</div>
-
-<div class="mycard">
-  <%= render 'form', discipline: @discipline %>
+<div class="row back rowshadow">
+  <%= render 'shared/marge' %>
+  <div class="content col s12 m9">
+    <div class="myflex content-title">
+      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / <%= link_to "Formules", disciplines_path %> / Modifier</p>
+      <h4></h4>
+    </div>
+    <div class="row">
+      <div class="content-form">
+        <%= render 'form', discipline: @discipline %>
+      </div>
+    </div>
+  </div>
 </div>

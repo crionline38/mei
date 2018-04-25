@@ -1,0 +1,79 @@
+    <div class="content-table">
+      <div class="hcont">
+        <table id= "crenautable" class="table-crenau">
+          <tr>
+              <td></td>
+              <td></td>
+            <% (8..21).each do |i| %>
+              <td class="hrefer"><div class="hlabel"><%= i %>H</div></td>
+              <td class=""></td>
+              <td class=""></td>
+              <td class="minfin"><div class="hlabelfin"><%= "22H" if i== 21 %></div></td>
+            <% end %>
+          </tr>
+          <% (0..6).each do |j|
+            jour = @jours[j] %>
+            <tr>
+              <td rowspan="2" class ="tjour"><%= @jours[j] %></td>
+              <td class="rec">P</td>
+              <% (8..21).each do |i| %>
+                <td id='<%= "t#{j}_P_#{i}_0" %>' class="heureh"></td>
+                <td id='<%= "t#{j}_P_#{i}_15" %>' class="minh"></td>
+                <td id='<%= "t#{j}_P_#{i}_30" %>' class="minh"></td>
+                <td id='<%= "t#{j}_P_#{i}_45" %>' class="minh <%= "cfin" if i== 21 %>"></td>
+              <% end %>
+            </tr>
+            <tr>
+              <td class="rec">I</td>
+              <% (8..21).each do |i| %>
+                <td id='<%= "t#{j}_I_#{i}_0" %>' class="heure"></td>
+                <td id='<%= "t#{j}_I_#{i}_15" %>' class="min"></td>
+                <td id='<%= "t#{j}_I_#{i}_30" %>' class="min"></td>
+                <td id='<%= "t#{j}_I_#{i}_45" %>' class="min <%= "cfin" if i== 21 %>"></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+<script type="text/javascript">
+  // Mon code Javascript
+  var vartop2 = document.body.querySelector("#t0_P_8_0").offsetLeft;
+  var vartop3 = document.body.querySelector("#t0_P_21_45").offsetLeft;
+  var width = ((vartop3-vartop2)/((14*4)-1)/15);
+
+  <% @crenaus.each do |crenau|
+    ms = (crenau.start.strftime("%M").to_i / 15).round * 15
+    mhs = crenau.start.strftime("%H").to_i
+    ids = "t#{crenau.jour}_P_" + mhs.to_s + "_"+ ms.to_s
+    soff = crenau.start.strftime("%M").to_i - ms
+
+    mstop = (crenau.end.strftime("%M").to_i / 15).round * 15
+    mhstop = crenau.end.strftime("%H").to_i
+    idstop = "t#{crenau.jour}_P_" + mhstop.to_s + "_"+ mstop.to_s
+    stopoff = crenau.end.strftime("%M").to_i - mstop %>
+
+    var height = document.body.querySelector("#t0_P_8_0").getBoundingClientRect().height;
+    var x1 = document.body.querySelector("#<%= ids %>").offsetLeft;
+    var x2 = document.body.querySelector("#<%= idstop %>").offsetLeft;
+    var lenghtx = x2 - x1
+    var offtop = -1
+
+    <% case crenau.recurence %>
+        <% when 0 %>
+          height *= 2;
+        <% when 1 %>
+        <% when 2 %>
+          offtop = height-1;
+    <% end %>
+
+    var min_start = Math.round(<%= soff %> * width)-1;
+    var duree = lenghtx + ((<%= stopoff %> - <%= soff %>) * width)+1;
+    var inst = "<%= crenau.instrument.name %>";
+    var div='<a href="/crenaus/<%= crenau.id %>/edit"><div class="divcrenau myflex2 myalign" style="z-index:10; top: '+offtop+'px;left:'+min_start+'px;height:' + (height+1) + 'px;width:' + duree + 'px;">'+inst+'</div></a>'
+    <% if crenau.recurence != 3 %>
+      document.body.querySelector("#<%= ids %>").insertAdjacentHTML( 'afterbegin',  div);
+    <% end %>
+  <% end %>
+  window.onresize = function(event) {location.reload();}
+</script>

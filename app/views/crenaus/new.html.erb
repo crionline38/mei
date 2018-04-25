@@ -1,10 +1,14 @@
-<div class="title">
-  <h4><a href="#" onClick="history.go(-1);return true;">
-        <i class="fa fa-chevron-circle-left"></i></a></h4>
-  <h4>Nouveau créneau  </h4>
-  <h4></h4>
-</div>
-
-<div class="mycard">
-  <%= render 'form', crenau: @crenau %>
+<div class="row back rowshadow">
+  <%= render 'shared/marge' %>
+  <div class="content col s12 m9">
+    <div class="myflex content-title">
+      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / <%= link_to "Créneaux", crenaus_path %> / Créer</p>
+      <h4></h4>
+    </div>
+    <div class="row">
+      <div class="content-form">
+        <%= render 'form', crenau: @crenau %>
+      </div>
+    </div>
+  </div>
 </div>

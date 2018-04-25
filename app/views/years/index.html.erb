@@ -1,34 +1,36 @@
-<div class="title">
-  <h4><a href="#" onClick="history.go(-1);return true;">
-        <i class="fa fa-chevron-circle-left"></i></a></h4>
-  <h4>Saisons</h4>
-  <h4><%= link_to new_year_path do  %>
-  <i class="fa fa-plus-circle" aria-hidden="true" title="Ajouter une saison"></i>
-  <% end %></h4>
-</div>
+<div class="row back rowshadow">
+  <%= render 'shared/marge' %>
+  <div class="content col s12 m9">
+    <div class="myflex content-title">
+      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / Saisons</p>
+      <h4><%= link_to fa_icon('plus-circle'), new_year_path, title: "Ajouter une saison" if @auth %></h4>
+    </div>
+    <div class="row">
+      <div class="content-table">
+        <table class="striped responsive-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Adhésions</th>
+              <th>Elèves</th>
+              <th></th>
+            </tr>
+          </thead>
 
-<div class="mycard">
-  <table class="striped responsive-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Adhésions</th>
-        <th>Elèves</th>
-        <th></th>
-      </tr>
-    </thead>
+          <tbody>
+            <% @years.each do |year| %>
 
-    <tbody>
-      <% @years.each do |year| %>
+              <tr class="pointer" onclick="location.href='<%= edit_year_path(year) %>'">
+                <td><%= year.name %></td>
+                <td><%= year.adhesion.count %></td>
+                <td><%= Cour.where(year: year).count %></td>
+                <td><%= link_to fa_icon("trash-o"), year_path(year), class: "secondary-content", method: :delete, data: { confirm: 'Supprimer la saison?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-        <tr class="pointer" onclick="location.href='<%= edit_year_path(year) %>'">
-          <td><%= year.name %></td>
-          <td><%= year.adhesion.count %></td>
-          <td><%= Cour.where(year: year).count %></td>
-          <td><%= link_to fa_icon("trash-o"), year_path(year), class: "secondary-content", method: :delete, data: { confirm: 'Supprimer la saison?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+      </div>
+    </div>
+  </div>
 </div>

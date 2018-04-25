@@ -3,6 +3,7 @@ class InstrumentsController < ApplicationController
 
   def index
     @instruments = Instrument.where(valide: true).order('name')
+    @intrument = @instruments.first
     if params['instru']
       @active = params['instru'].to_i
       @instrument = Instrument.find(@active)

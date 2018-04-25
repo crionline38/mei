@@ -2,7 +2,6 @@ class AdherentController < ApplicationController
   before_action :set_adherent, only: [:show, :edit, :update, :destroy]
 
   def index
-    @adherent = current_user
     if params[:query].present?
       sql_query = "first_name ILIKE :query OR last_name ILIKE :query"
       @title = "Résultats"
@@ -16,7 +15,6 @@ class AdherentController < ApplicationController
   end
 
   def bureau
-    @adherent = current_user
     @title = "Membre du bureau "
     @link = "Bureau"
     @adherents = User.joins(:function).where("functions.name = 'Président' OR functions.name = 'Trésorier' OR functions.name = 'Secrétaire' OR functions.name = 'Bureau'").order('function_id').reverse
@@ -24,7 +22,6 @@ class AdherentController < ApplicationController
   end
 
   def profs
-    @adherent = current_user
     @title = "Professeurs"
     @link = "Professeur"
     @adherents = User.joins(:function).where(functions: {name: "Professeur"}).order('first_name')

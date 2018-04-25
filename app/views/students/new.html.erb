@@ -2,7 +2,7 @@
   <%= render 'shared/marge' %>
   <div class="content col s12 m9">
     <div class="myflex content-title">
-      <p><%= link_to "menu", adherent_path(@adherent) %> / Ajouter un élève</p>
+      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / Ajouter un élève</p>
     </div>
     <div class="content-form">
       <%= simple_form_for @student, :url => adherent_students_path, :method => :post do |f| %>

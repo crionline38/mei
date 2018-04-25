@@ -2,10 +2,11 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name, label: "nom" %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+    <table>
+      <tr>
+        <td><%= f.input :name, label: "Nom de l'instrument" %></td>
+        <td><%= f.button :submit, "Créer" %></td>
+      </tr>
+    </table>
   </div>
 <% end %>
