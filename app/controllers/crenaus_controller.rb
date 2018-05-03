@@ -15,6 +15,7 @@ class CrenausController < ApplicationController
       i += 1
     end
 
+
     if ["Bureau", "Secrétaire", "Trésorier", "Président", "Admin"].include?(@adherent.function.name)
       @crenaus = Crenau.where(year: @saison).order(:valide)
       render :all

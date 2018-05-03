@@ -1,6 +1,6 @@
 class InstrumentsController < ApplicationController
   before_action :set_instrument, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: :ajax
+  skip_before_action :authenticate_user!, only: [:ajax, :ajaxd]
   def index
     @instruments = Instrument.where(valide: true).order('name')
     @intrument = @instruments.first
@@ -23,6 +23,12 @@ class InstrumentsController < ApplicationController
   def ajax
     @formules = Discipline.joins(:instruments).where(instruments: {id: params["instrument_id"]})
     render :layout => false
+  end
+
+  def ajaxd
+    @crenaus = Crenau.where(instrument: params["instrument_id"]).rewhere(discipline: params["discipline"]).rewhere(year: @saison).rewhere(valide: true).order(:jour)
+    render :layout => false
+    p @crenaus
   end
 
   def new

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :years, except: [:show]
   resources :instruments, except: [:show] do
     get 'ajax', to: "instruments#ajax"
+    get 'ajaxd', to: "instruments#ajaxd"
   end
   resources :tarifs, except: [:show]
   resources :disciplines, except: [:show]

@@ -16,6 +16,8 @@ class CoursController < ApplicationController
   # GET /cours/new
   def new
     @cour = Cour.new
+    @instruments = Instrument.where(valide: true)
+    @disciplines = []
   end
 
   # GET /cours/1/edit

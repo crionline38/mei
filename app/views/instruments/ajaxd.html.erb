@@ -1,0 +1,66 @@
+<input type="hidden" id="finput">
+Créneaux disponibles ( P = Semaines Paires / I = Semaines impaires ) :
+      <% @crenaus.each do |crenau|
+        ms = (crenau.start.strftime("%M").to_i / 15).round * 15
+        mhs = crenau.start.strftime("%H").to_i
+        ids = "t#{crenau.id}_P_" + mhs.to_s + "_"+ ms.to_s
+        soff = crenau.start.strftime("%M").to_i - ms
+
+        mstop = (crenau.end.strftime("%M").to_i / 15).round * 15
+        crenau.end.strftime("%M").to_i == 0 ? toff =0 : toff=1
+        mhstop = crenau.end.strftime("%H").to_i+toff
+        idstop = "t#{crenau.id}_P_" + mhstop.to_s + "_"+ mstop.to_s
+        stopoff = crenau.end.strftime("%M").to_i - mstop %>
+
+    <table id= "crenautable" class="table-crenau">
+      <tr>
+          <td></td>
+          <td></td>
+        <% (mhs...mhstop).each do |i| %>
+          <td id='<%= "t_P_#{i}_0" %>' class="hrefer"><div class="hlabel"><%= i %>H</div></td>
+          <td id='<%= "t_P_#{i}_15" %>' class=""></td>
+          <td id='<%= "t_P_#{i}_30" %>' class=""></td>
+          <td id='<%= "t_P_#{i}_45" %>' class="minfin"><div class="hlabelfin"><%= "#{mhstop}H" if i== mhstop-1 %></div></td>
+        <% end %>
+      </tr>
+        <tr>
+          <td rowspan="2" class ="tjour"><%= @jours[crenau.jour] %></td>
+          <td class="rec">P</td>
+          <% (mhs...mhstop).each do |i|
+            @cstart = crenau.start.strftime("%H%M").to_i
+            @cend = crenau.end.strftime("%H%M").to_i
+            crec = crenau.recurence
+            @cp =false
+            @ci = false
+            @cp=true if crec == 0 or crec == 1
+            @ci=true if crec == 0 or crec == 2 %>
+
+          <% @cstart<= i*100 and @cend > i*100+14 ? myclass="jaune" : myclass="" %>
+            <td id='<%= "t_#{crenau.id}_P_#{i}_0" %>' class="heureh <%= myclass if @cp %>" onmousedown="set(this);" onmouseup="unset(this)" onmousemove="cset(this)"></td>
+          <% @cstart<= i*100+15 and @cend > i*100+29  ? myclass="jaune" : myclass="" %>
+            <td id='<%= "t_#{crenau.id}_P_#{i}_15" %>' class="minh <%= myclass if @cp %>" onmousedown="set(this);" onmouseup="unset(this)" onmousemove="cset(this)"></td>
+          <% @cstart<= i*100+30 and @cend > i*100+44  ? myclass="jaune" : myclass="" %>
+            <td id='<%= "t_#{crenau.id}_P_#{i}_30" %>' class="minh <%= myclass if @cp %>" onmousedown="set(this);" onmouseup="unset(this)" onmousemove="cset(this)"></td>
+          <% @cstart<= i*100+45 and @cend > i*100+59  ? myclass="jaune" : myclass="" %>
+            <td id='<%= "t_#{crenau.id}_P_#{i}_45" %>' class="minh <%= myclass if @cp %> <%= "cfin" if i== mhstop-1 %>" onmousedown="set(this);" onmouseup="unset(this)" onmousemove="cset(this)"></td>
+          <% end %>
+            <td id='<%= "t_#{crenau.id}_P_#{mhstop}_0" %>' style="visibility: hidden;" class="heureh"></td>
+        </tr>
+        <tr>
+          <td class="rec">I</td>
+          <% (mhs...mhstop).each do |i| %>
+
+          <% @cstart<= i*100 and @cend > i*100+14 ? myclass="jaune" : myclass="" %>
+            <td id='<%= "t_#{crenau.id}_I_#{i}_0" %>' class="heure <%= myclass if @ci %> " onmousedown="set(this);" onmouseup="unset(this)" onmousemove="cset(this)"></td>
+          <% @cstart<= i*100+15 and @cend > i*100+29  ? myclass="jaune" : myclass="" %>
+            <td id='<%= "t_#{crenau.id}_I_#{i}_15" %>' class="min <%= myclass if @ci %> " onmousedown="set(this);" onmouseup="unset(this)" onmousemove="cset(this)"></td>
+          <% @cstart<= i*100+30 and @cend > i*100+44  ? myclass="jaune" : myclass="" %>
+            <td id='<%= "t_#{crenau.id}_I_#{i}_30" %>' class="min <%= myclass if @ci %> " onmousedown="set(this);" onmouseup="unset(this)" onmousemove="cset(this)"></td>
+          <% @cstart<= i*100+45 and @cend > i*100+59  ? myclass="jaune" : myclass="" %>
+            <td id='<%= "t_#{crenau.id}_I_#{i}_45" %>' class="min <%= myclass if @ci %>  <%= "cfin" if i== mhstop-1 %>" onmousedown="set(this);" onmouseup="unset(this)" onmousemove="cset(this)"></td>
+          <% end %>
+            <td id='<%= "t_#{crenau.id}_I_#{mhstop}_0" %>' style="visibility: hidden;" class="heure"></td>
+        </tr>
+      <% end %>
+    </table>
+

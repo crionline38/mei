@@ -2,16 +2,119 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :discipline %>
-    <%= f.association :instrument %>
     <div class="hidden">
       <%= f.association :student, collection: [@student], selected: 1 %>
       <%= f.association :user, collection: [@student.user], selected: 1 %>
       <%= f.association :year, collection: [@saison], selected: 1 %>
     </div>
+    <div class="row myflex">
+      <div class="col s12 m6 l6">
+        Instrument :<br/>
+        <%= f.association :instrument, :input_html => { :class => "" }, label: false, collection: @instruments %>
+      </div>
+        <% @cour.id ? hid ="visible"  : hid = "hidden" %>
+      <div class="col s12 m6 l6" style="visibility: <%= hid %>;" id="dselect">
+        Formule :<br/>
+        <%= f.association :discipline,  :input_html => { :class => "" }, label: false, collection: @disciplines %>
+      </div>
+    </div>
+    <div id="cshow" class="center" style="visibility: hidden">
+
+    </div>
+
   </div>
 
-  <div class="form-actions">
+  <div id="bsubmit" class="form-actions" style="visibility: hidden">
     <%= f.button :submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  const select = document.getElementById("cour_discipline_id");
+  const select2 = document.getElementById("cshow");
+  const bsubmit = document.getElementById("cshow");
+
+ document.querySelector('#cour_discipline_id').addEventListener('change', function (ev) {
+      var instr = document.querySelector('#cour_instrument_id').value
+      var url2 = "/instruments/" + instr + "/ajaxd?discipline=" + ev.target.value
+
+    fetch(url2)
+      .then(function(response) {
+        response.text().then(function(text) {
+          select2.innerHTML = text;
+          select2.style.visibility = 'visible';
+          bsubmit.style.visibility = 'visible';
+        });
+      })
+    });
+
+  document.querySelector('#cour_instrument_id').addEventListener('change', function (ev) {
+      var url = "/instruments/" + ev.target.value + "/ajax"
+
+    fetch(url)
+      .then(function(response) {
+        response.text().then(function(text) {
+          select.innerHTML = text;
+          document.querySelector('#dselect').style.visibility = 'visible';
+
+          var disc = document.querySelector('#cour_discipline_id').value
+          var url2 = "/instruments/" + ev.target.value + "/ajaxd?discipline=" + disc
+
+          fetch(url2)
+            .then(function(response) {
+              response.text().then(function(text) {
+                select2.innerHTML = text;
+                select2.style.visibility = 'visible';
+                bsubmit.style.visibility = 'visible';
+              });
+            })
+
+        });
+      })
+  });
+
+var myMouse = 0;
+function cchange(ev) {
+      var finput = document.querySelector("#finput");
+      var ftext = "";
+
+    if (myMouse===1 & ev.classList.contains("jaune")){
+      ev.classList.remove("jaune");
+      ev.classList.add("vert");
+      finput.classList.add(ev.id);
+    }
+
+    if (myMouse===2 & ev.classList.contains("vert")){
+      ev.classList.remove("vert");
+      ev.classList.add("jaune");
+      finput.classList.remove(ev.id);
+    }
+
+      finput.classList.forEach(function(element) {
+        if (ftext==="") {
+          ftext = element;
+        }else{
+          ftext+= ","+element;
+        }
+      });
+      finput.value = ftext;
+
+}
+
+function set(ev) {
+  if (ev.classList.contains("jaune")){
+    myMouse = 1;
+  }else{
+    myMouse = 2;
+  }
+  cchange(ev);
+}
+function unset(ev) {
+  myMouse = 0;
+}
+function cset(ev){
+  if (myMouse > 0) {
+    cchange(ev);
+  }
+}
+</script>

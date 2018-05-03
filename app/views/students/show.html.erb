@@ -1,10 +1,24 @@
     <div class="myflex content-title">
       <p><%= render 'shared/logo' %> /
         <%= @student.fullname %></p>
-        <%= link_to fa_icon('edit'), edit_student_path( @student), title: "Modifier" %>
       <%= render 'shared/logout' %>
     </div>
+    <div class="content-bandeau myflex">
+      <div>Elève</div>
+      <%= @student.fullname %>
+      <%= @student.year %>
+      <%= link_to fa_icon('edit'), edit_student_path( @student), title: "Modifier" %>
+    </div>
     <div class="content-table">
-      <%= render 'shared/courlist' %>
+      <div class="row">
+        <div class="col s12 m6">
+          <%= render 'shared/courlist' %>
+        </div>
+        <div class="col s12 m6">
+          <div class="conten-form">
+            Comentaires :
+          </div>
+        </div>
+      </div>
     </div>
 
