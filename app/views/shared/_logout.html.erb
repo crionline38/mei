@@ -1,0 +1,20 @@
+      <h4>
+        <div class="myflex">
+          <%= select_tag "saison", options_from_collection_for_select(Year.all.order('name').reverse, "id", "name", @saison.id),class: "saison", :onChange=>"javascript: window.location.href = `?saison=${this.value}`;" %>
+
+          <ul id="dropdown1" class="dropdown-content dropdown">
+            <li>
+              <%= link_to adherent_profile_path(@adherent) do %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+              <% end %>
+            </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <% end %>
+              </li>
+          </ul>
+          <a class="dropdown-button" href="#!" data-activates="dropdown1"><%= image_tag "avatar.jpg", class: "avatar " %></a>
+
+        </div>
+      </h4>

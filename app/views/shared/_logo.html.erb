@@ -1,0 +1,5 @@
+      <%= link_to root_path, class: "navbar-wagon-brand" do %>
+        <%= image_tag "logo.jpg", height: 30 %>
+      <% end %>
+      <%= link_to fa_icon('home'), adherent_path(@current_user) %> /
+      <%= link_to @adherent.fullname, adherent_path(@adherent) %>

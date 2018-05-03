@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
       session['saison'] ? @saison = Year.find(session['saison'].to_i) : @saison = Year.all.order('name').last
       @jours ="Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche".split(' ')
       @recurences ="Toutes les semaines,Semaines paires,Semaines impaires,Une seule fois".split(',')
+      p @recurences
       if current_user
         @auth = ["Bureau", "Secrétaire", "Trésorier", "Président", "Admin"].include?(current_user.function.name) || current_user.email == "maildecri@gmail.com"
       else

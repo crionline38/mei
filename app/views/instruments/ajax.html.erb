@@ -1,0 +1,5 @@
+<% myselect = 'selected="selected"' %>
+<% @formules.each do |formule| %>
+  <option <%= myselect %> value="<%= formule.id %>"><%= formule.name %></option>
+  <% myselect ="" %>
+<% end %>

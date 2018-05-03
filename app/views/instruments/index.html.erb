@@ -1,10 +1,11 @@
+<div class="myflex content-title">
+  <p><%= render 'shared/logo' %> / Instruments enseignés</p>
+  <%= link_to fa_icon('plus-circle'), new_instrument_path, title: "Ajouter un instrument" if @auth %>
+  <%= render 'shared/logout' %>
+</div>
+
 <div class="row back rowshadow">
-  <%= render 'shared/marge' %>
   <div class="content col s12 m9">
-    <div class="myflex content-title">
-      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / Instruments enseignés</p>
-      <h4><%= link_to fa_icon('plus-circle'), new_instrument_path, title: "Ajouter un instrument" if @auth %></h4>
-    </div>
     <div class="row">
       <div class="col s6 separator padding">
         <div class="content-table">

@@ -1,12 +1,12 @@
 <div class="row back rowshadow ">
-  <%= render 'shared/marge' %>
-  <div class="content col s12 m9">
+  <div class="content col s12">
     <div class="myflex content-title">
-      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / <%= @title %></p>
+      <p><%= render 'shared/logo' %> / <%= @title %></p>
       <%= form_tag adherent_index_path, method: :get do %>
         <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Rechercher un membre" %>
       <% end %>
-      <h4><%= link_to fa_icon('plus-circle'), "#{new_adherent_path}?role=#{@link}", title: "Ajouter un #{@title[0...-1]}" if @auth %></h4>
+      <%= render 'shared/logout' %>
+
     </div>
     <div class="content-table">
 
@@ -16,7 +16,7 @@
             <th>Nom</th>
             <th>Prénom</th>
             <th>Fonction</th>
-            <th></th>
+            <th class="right"><%= link_to fa_icon('plus-circle'), "#{new_adherent_path}?role=#{@link}", title: "Ajouter un #{@title[0...-1]}" if @auth %></th>
           </tr>
         </thead>
         <tbody>

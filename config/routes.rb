@@ -2,26 +2,32 @@ Rails.application.routes.draw do
 
 
   resources :years, except: [:show]
-  resources :instruments, except: [:show]
+  resources :instruments, except: [:show] do
+    get 'ajax', to: "instruments#ajax"
+  end
   resources :tarifs, except: [:show]
   resources :disciplines, except: [:show]
 
   resources :students do
     resources :cours
   end
-  resources :crenaus
+  # resources :crenaus
   resources :adherent do
     resources :adhesions, only: [:new, :update]
     resources :students
     get 'query', to: 'students#query'
     get 'yes', to: 'students#yes'
     get 'querytwo', to: 'students#querytwo'
+    get 'profile', to: "adherent#profile"
+    resources :crenaus
   end
-
+  resources :users, only: [] do
+    resources :crenaus, only: [:create, :show, :update, :destroy]
+  end
 devise_for :users, controllers: { registrations: "registrations" }
   devise_scope :user do
     authenticated :user do
-      root 'adherent#profile', as: :authenticated_root
+      root 'adherent#root', as: :authenticated_root
     end
 
     unauthenticated do

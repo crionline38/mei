@@ -1,14 +1,9 @@
-<div class="row back rowshadow">
-  <%= render 'shared/marge' %>
-  <div class="content col s12 m9">
-    <div class="myflex content-title">
-      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / <%= link_to "Créneaux", crenaus_path %> / Créer</p>
-      <h4></h4>
-    </div>
-    <div class="row">
-      <div class="content-form">
-        <%= render 'form', crenau: @crenau %>
-      </div>
-    </div>
-  </div>
+<div class="myflex content-title">
+  <p><%= render 'shared/logo' %> /
+    <%= link_to "Créneaux", adherent_crenaus_path(@adherent) %> / Nouveau</p>
+
+  <%= render 'shared/logout' %>
+</div>
+<div class="content-bandeau">
+  <%= render 'form', crenau: @crenau %>
 </div>

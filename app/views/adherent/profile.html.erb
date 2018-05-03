@@ -1,0 +1,39 @@
+    <div class="myflex content-title">
+      <p><%= render 'shared/logo' %> / Profil</p>
+      <%= render 'shared/logout' %>
+    </div>
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="content-form">
+          <u><%= @adherent.function.name %></u>
+          <p><%= @adherent.address %><br/>
+            <% if @adherent.address2.length > 0 %>
+              <%= @adherent.address2 %><br/>
+            <% end %>
+            <%= @adherent.zipcode %> <%= @adherent.city %><br/><br/>
+            Email : <%= @adherent.email %><br/>
+            Téléphone : <%= @adherent.tel1 %><br/>
+            <% if @adherent.tel2 != "" %>
+              Téléphone 2 : <%= @adherent.tel2 %>
+            <% end %>
+          </p>
+          <%= link_to " Modifier", edit_adherent_path(current_user), class: "fa fa-pencil" %>
+        </div>
+      </div>
+      <div class="col s12 m6">
+        <div class="content-form">
+          <% if @adherent.years.include?(@saison) %>
+            Adhérent <%= @saison.name %></h1>
+            <hr>
+            <h1><u>Elèves :</u></h1>
+            <p><% @students = @adherent.students %>
+            <%= render 'shared/studentlist' %></p>
+          <% else %>
+            Non adhérent</h1>
+            <%= link_to " Adhérer", new_adherent_adhesion_path(@adherent), class: "fa fa-plus-circle", data: { confirm: "Prendre l'adhésion #{@saison.name}?" } %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+

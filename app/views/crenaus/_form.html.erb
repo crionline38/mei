@@ -1,41 +1,73 @@
-<%= simple_form_for @crenau do |f| %>
+<%= simple_form_for [@adherent,@crenau], id: "test" do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <div class="row">
-      <div class="col s6">
-        <%= f.association :user, collection: @usercollection, label_method: :fullname, label: "Professeur", selected: f.object.user.id %>
-        <%= f.input :jour, collection: @jours, selected: @jours[@crenau.jour] %>
-        <%= f.association :discipline, label: "Formule", collection: Discipline.where(valide: true) %>
-  <div class="form-actions">
-    <%= f.button :submit, value: "Sauvegarder" %>
-  </div>
+    <div class="row nomargin">
+      <div class="col s12 m4 l2 center">
+        <%= f.association :user,  :input_html => { :class => "grandselect" }, collection: @usercollection, label_method: :fullname, label: false, selected: f.object.user.id %>
       </div>
-      <div class="col s6">
-        <%= f.input :recurence, collection: @recurences, selected: @crenau.recurence %>
-        <div class="col s6">
-          <%= f.label :start, 'De', class: 'active', value: "test" %>
-          <%= f.text_field :start, value: crenau.start.strftime("%H:%M"), :class => "timepicker" %>
-        </div>
-        <div class="col s6">
-          <%= f.label :start, 'A', class: 'active' %>
-          <%= f.text_field :end, value: crenau.end.strftime("%H:%M"), :class => "timepicker" %>
-        </div>
-        <%= f.association :instrument, collection: Instrument.where(valide: true) %>
-<% if @auth %>
-        <input type="checkbox" id="test5" name="crenau[valide]"
-          <%= "checked" if crenau.valide == true %> onclick="
-          getElementById('crenau_valide').value = document.getElementById('test5').checked;"/>
-        <label for="test5">Créneau validé</label>
-        <input value="<%= crenau.valide %>" type="hidden" name="crenau[valide]" id="crenau_valide">
-
-<% end %>
+      <div class="col s12 m4 l1 center">
+            <%= f.input :jour, label: false,  :input_html => { :class => "petitselect" } ,collection: @jours, selected: @jours[@crenau.jour] %>
       </div>
-    </div>
+      <div class="col s12 m4 l1 myflex">
+            <%= f.text_field :start, value: crenau.start.strftime("%H:%M"), :class => "timepicker" %>
+            <%= f.text_field :end, value: crenau.end.strftime("%H:%M"), :class => "timepicker" %>
+      </div>
+      <div class="col s12 m3 l2 center">
+        <%= f.input :recurence, label: false,  :input_html => { :class => "grandselect" }, collection: @recurences, selected: @recurences[@crenau.recurence] %>
+      </div>
+      <div class="col s12 m3 l2 center">
+        <%= f.association :instrument, :input_html => { :class => "grandselect" }, label: false, collection: @instruments %>
+      </div>
+        <% crenau.id ? hid ="visible"  : hid = "hidden" %>
+      <div class="col s12 m3 l2 center" style="visibility: <%= hid %>;" id="dselect">
+        <%= f.association :discipline,  :input_html => { :class => "grandselect" }, label: false, collection: @disciplines %>
+      </div>
 
     <div class="hidden">
       <%= f.association :year, collection: [@saison], label: "Saison", selected: 1 %>
     </div>
-  </div>
+
+    <div class="col s12 m3 l2 myflex">
+      <% if @auth %>
+            <div>
+              <div class="toutpetit">Validé</div>
+
+              <div>
+                <input type="checkbox" id="test5" name="crenau[valide]"
+                  <%= "checked" if crenau.valide == true %> onclick="
+                  getElementById('crenau_valide').value = document.getElementById('test5').checked;"/>
+                <label for="test5"></label>
+                <input value="<%= crenau.valide %>" type="hidden" name="crenau[valide]" id="crenau_valide">
+              </div>
+            </div>
+      <% end %>
+      <button name="button" type="submit" class=""><%= fa_icon("save") %></button>
 
 <% end %>
+      <% if crenau.id %>
+        <%= link_to  adherent_crenau_path(@adherent, crenau), method: :delete, data: { confirm: "Supprimer le créneau?" } do fa_icon("trash-o") end%>
+      <% else %>
+        <p></p>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  const select = document.getElementById("crenau_discipline_id");
+
+  document.querySelector('#crenau_instrument_id').addEventListener('change', function (ev) {
+      var url = "/instruments/" + ev.target.value + "/ajax"
+      console.log(url)
+    fetch(url)
+      .then(function(response) {
+        response.text().then(function(text) {
+          select.innerHTML = text;
+          document.querySelector('#dselect').style.visibility = 'visible';
+        });
+      })
+  });
+
+</script>

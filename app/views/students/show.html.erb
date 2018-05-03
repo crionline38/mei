@@ -1,31 +1,10 @@
-<div class="row back rowshadow">
-  <%= render 'shared/marge' %>
-  <div class="content col s12 m9">
     <div class="myflex content-title">
-      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / <%= @student.fullname %>.<%= @student.year %></p>
-      <p>Adhérent : <%= link_to @student.user.fullname, adherent_path(@student.user) %></p>
-      <h4><%= link_to fa_icon('edit'), edit_student_path( @student), title: "Modifier" %></h4>
+      <p><%= render 'shared/logo' %> /
+        <%= @student.fullname %></p>
+        <%= link_to fa_icon('edit'), edit_student_path( @student), title: "Modifier" %>
+      <%= render 'shared/logout' %>
     </div>
     <div class="content-table">
       <%= render 'shared/courlist' %>
     </div>
-  </div>
-</div>
 
-
-<div class="row">
-
-  <div class="col s6">
-    <div class="title">
-      <h4></h4>
-      <h4>Cours :</h4>
-      <h4><%= link_to new_student_cour_path(@student) do  %>
-      <i class="fa fa-plus-circle" aria-hidden="true" title="S'inscrire à un cours"></i>
-      <% end %></h4>
-    </div>
-
-    <div class="mycard">
-      <%= render 'shared/courlist' %>
-    </div>
-  </div>
-</div>

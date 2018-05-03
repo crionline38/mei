@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
   end
 
   def show
+    @adherent = @student.user
   end
 
   def query

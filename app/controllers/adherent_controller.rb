@@ -28,6 +28,11 @@ class AdherentController < ApplicationController
     render "index"
   end
 
+  # def crenaus
+  #   @adherent = User.find(params[:adherent_id])
+  #   @crenaus = Crenau.where(year: @saison).rewhere(user: @adherent).order(:valide, :jour)
+  # end
+
   def new
     params['role'] ? @role = params['role'] : @role = "Adhérent"
     @adherent = User.new
@@ -66,8 +71,13 @@ class AdherentController < ApplicationController
     @adhesion = Adhesion.find_by(user: current_user, year: @saison)
   end
 
-  def profile
+  def root
     redirect_to adherent_path(current_user)
+  end
+
+  def profile
+
+    @adherent = User.find(params[:adherent_id])
   end
 
   def edit

@@ -1,6 +1,6 @@
 class InstrumentsController < ApplicationController
   before_action :set_instrument, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authenticate_user!, only: :ajax
   def index
     @instruments = Instrument.where(valide: true).order('name')
     @intrument = @instruments.first
@@ -18,6 +18,11 @@ class InstrumentsController < ApplicationController
     end
       @formules = Discipline.joins(:instruments).where(instruments: {id: @active})
       @allformules = Discipline.all.order('name')
+  end
+
+  def ajax
+    @formules = Discipline.joins(:instruments).where(instruments: {id: params["instrument_id"]})
+    render :layout => false
   end
 
   def new

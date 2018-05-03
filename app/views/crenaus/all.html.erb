@@ -1,5 +1,5 @@
 <div class="myflex content-title">
-  <p><%= render 'shared/logo' %> / Créneaux</p>
+  <p><%= render 'shared/logo' %> / Planning</p>
   <%= link_to fa_icon('plus-circle'), new_adherent_crenau_path(@adherent), title: "Ajouter un créneau" %>
   <%= render 'shared/logout' %>
 </div>
@@ -67,7 +67,7 @@
           <tbody>
             <% @crenaus.each do |crenau|
               if crenau.recurence == 3 %>
-                <tr class="<%= crenau.valide %> pointer" onclick="location.href='<%= edit_adherent_crenau_path(@adherent, crenau) %>'">
+                <tr class="<%= crenau.valide %> pointer" onclick="location.href='<%= edit_adherent_crenau_path(@adherent,crenau) %>'">
 
 
                   <td><%= crenau.user.fullname %></td>

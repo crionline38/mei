@@ -1,8 +1,7 @@
-      <div class="content-title row">
-        <div class="col s4">Membres :</div>
-        <div class="col s4">Cours :</div>
-        <div class="col s4">Paramètres :</div>
-      </div>
+    <div class="myflex content-title">
+      <p><%= render 'shared/logo' %></p>
+      <%= render 'shared/logout' %>
+    </div>
       <div class="row">
         <div class="col s4">
           <ul>
@@ -14,7 +13,7 @@
         </div>
         <div class="col s4">
           <ul>
-            <li class="collection-item"><%= link_to " Créneaux", crenaus_path, class: "fa fa-calendar" %></li>
+            <li class="collection-item"><%= link_to " Créneaux", adherent_crenaus_path(@adherent), class: "fa fa-calendar" %></li>
             <li class="collection-item"><%= link_to " Inscriptions", "#", class: "fa fa-info" %></li>
           </ul>
         </div>

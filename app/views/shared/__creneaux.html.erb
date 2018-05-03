@@ -1,5 +1,7 @@
 <div class="myflex content-title">
-  <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / Créneaux</p>
+  <p><%= link_to fa_icon('home'), adherent_path(@adherent) %>
+<%= render 'shared/home' if ["Bureau", "Admin"].include?(@adherent.function.name) %>
+   / Créneaux</p>
   <h4><%= link_to fa_icon('plus-circle'), "#{new_crenau_path}?prof=#{@adherent.id}", title: "Ajouter un créneau" if @auth %></h4>
 </div>
 <div class="row">
