@@ -7,32 +7,108 @@
       <%= f.association :user, collection: [@student.user], selected: 1 %>
       <%= f.association :year, collection: [@saison], selected: 1 %>
     </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Avertissement :</span>
+          <p>Texte fourni par MEI.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div class="row myflex">
-      <div class="col s12 m6 l6">
+      <div class="col s12 m5">
         Instrument :<br/>
         <%= f.association :instrument, :input_html => { :class => "" }, label: false, collection: @instruments %>
       </div>
-        <% @cour.id ? hid ="visible"  : hid = "hidden" %>
-      <div class="col s12 m6 l6" style="visibility: <%= hid %>;" id="dselect">
+
+      <%  if @cour.id
+            hid ="visible"
+            @cour.plus ? hideco = "hidden" : hideco = "visible"
+            @cour.eco ? hidplus = "hidden" : hidplus = "visible"
+          else
+            hid = "hidden"
+            hidplus = "hidden"
+            hideco = "hidden"
+          end
+       %>
+
+      <div class="col s12 m5" style="visibility: <%= hid %>;" id="dselect">
         Formule :<br/>
         <%= f.association :discipline,  :input_html => { :class => "" }, label: false, collection: @disciplines %>
       </div>
+
+      <div class="col s12 m2" style="visibility: <%= hid %>;" id="cplus">
+        Options :<br/>
+            <div class="myflex">
+              <div class="toutpetit" id="lplus" style="visibility: <%= hidplus %>;" >+15 min</div>
+              <div id="divplus" style="visibility: <%= hidplus %>;" >
+                <input type="checkbox" id="plus"
+                  <%= "checked" if @cour.plus == true %> onclick="
+                  getElementById('cour_plus').value = document.getElementById('plus').checked;
+                    if (getElementById('cour_plus').value === 'true') {
+                      getElementById('diveco').style.visibility = 'hidden';
+                      getElementById('leco').style.visibility = 'hidden';
+                    } else {
+                      getElementById('diveco').style.visibility = 'visible';
+                      getElementById('leco').style.visibility = 'visible';
+                    }
+                  "/>
+                <label for="plus"></label>
+                <input value="<%= @cour.plus %>" type="hidden" name="plus" id="cour_plus">
+              </div>
+            </div>
+            <div class="myflex">
+              <div class="toutpetit" id="leco" style="visibility: <%= hideco %>;" >Economique</div>
+              <div id="diveco" style="visibility: <%= hideco %>;" >
+                <input type="checkbox" id="eco"
+                  <%= "checked" if @cour.eco == true %> onclick="
+                  getElementById('cour_eco').value = document.getElementById('eco').checked;
+                  if (getElementById('cour_eco').value === 'true') {
+                      getElementById('divplus').style.visibility = 'hidden';
+                      getElementById('lplus').style.visibility = 'hidden';
+                    } else {
+                      getElementById('divplus').style.visibility = 'visible';
+                      getElementById('lplus').style.visibility = 'visible';
+                    }
+                  "/>
+                <label for="eco"></label>
+                <input value="<%= @cour.eco %>" type="hidden" name="eco" id="cour_eco">
+              </div>
+            </div>
+      </div>
+
     </div>
-    <div id="cshow" class="center" style="visibility: hidden">
+    <div id="cshow" class="center" style="visibility: <%= hid %>">
+<%=  render 'instruments/ajaxd.html.erb' if @cour.id %>
+    </div>
+    <div id="divcomments" style="visibility: <%= hid %>">
+      <br/>Commentaires : <br/>
+      <%= f.input :comments, :as => :text, label: false, :placeholder => "Note au professeur", :input_html => {:rows => 5}  %>
 
     </div>
 
   </div>
 
-  <div id="bsubmit" class="form-actions" style="visibility: hidden">
-    <%= f.button :submit %>
+  <div id="bsubmit" class="form-actions" style="visibility: <%= hid %>">
+    <%= f.button :submit, "Enregistrer la pré-inscription" %>
   </div>
 <% end %>
 
 <script type="text/javascript">
   const select = document.getElementById("cour_discipline_id");
   const select2 = document.getElementById("cshow");
-  const bsubmit = document.getElementById("cshow");
+  const cplus = document.getElementById("cplus");
+  const tshow = document.getElementById("cshow");
+  const bsubmit = document.getElementById("bsubmit");
+  const dcomments = document.getElementById("divcomments");
+  const divplus = document.getElementById("divplus");
+  const lplus = document.getElementById("lplus");
+  const diveco = document.getElementById("diveco");
+  const leco = document.getElementById("leco");
 
  document.querySelector('#cour_discipline_id').addEventListener('change', function (ev) {
       var instr = document.querySelector('#cour_instrument_id').value
@@ -44,6 +120,7 @@
           select2.innerHTML = text;
           select2.style.visibility = 'visible';
           bsubmit.style.visibility = 'visible';
+          cplus.style.visibility = 'visible';
         });
       })
     });
@@ -65,7 +142,23 @@
               response.text().then(function(text) {
                 select2.innerHTML = text;
                 select2.style.visibility = 'visible';
+                tshow.style.visibility = 'visible';
+                cplus.style.visibility = 'visible';
                 bsubmit.style.visibility = 'visible';
+                dcomments.style.visibility = 'visible';
+
+                divplus.style.visibility = 'visible';
+                lplus.style.visibility = 'visible';
+                diveco.style.visibility = 'visible';
+                leco.style.visibility = 'visible';
+                if (document.getElementById("plus").checked) {
+                  diveco.style.visibility = 'hidden';
+                  leco.style.visibility = 'hidden';
+                }
+                if (document.getElementById("eco").checked) {
+                  divplus.style.visibility = 'hidden';
+                  lplus.style.visibility = 'hidden';
+                }
               });
             })
 

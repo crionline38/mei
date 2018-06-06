@@ -13,4 +13,9 @@ class UserMailer < ApplicationMailer
     # This will render a view in `app/views/user_mailer`!
   end
 
+  def newcour(cour)
+    @cour = cour
+    @user = @cour.student.user
+    mail(to: @user.email, subject: 'Pré-inscription à un cour')
+  end
 end

@@ -1,9 +1,10 @@
+<div class="myflex content-title">
+  <p><%= render 'shared/logo' %> / Ajouter un élève</p>
+  <%= render 'shared/logout' %>
+</div>
+
 <div class="row back rowshadow">
-  <%= render 'shared/marge' %>
-  <div class="content col s12 m9">
-    <div class="myflex content-title">
-      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / Ajouter un élève</p>
-    </div>
+  <div class="content col s12">
     <div class="content-form">
       <%= simple_form_for @student, :url => adherent_students_path, :method => :post do |f| %>
         <% @f=f %>

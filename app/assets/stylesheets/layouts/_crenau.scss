@@ -1,6 +1,7 @@
 .table-crenau {
   margin: 20px 30px 0 10px ;
 }
+
 .heure {
   border-left: 1px solid black;
   border-bottom: 1px solid black;
@@ -26,6 +27,11 @@
   position: absolute;
   top: -15px;
   left: -10px;
+}
+.plabel {
+  position: absolute;
+  top: -30px;
+  left: 0px;
 }
 .minh {
   border-left: 1px dotted black;
@@ -53,12 +59,24 @@
   border-top: 1px solid black;
   border-left: 1px solid black;
   padding: 0 5px 0 10px !important;
+  font-size: 22px;
+}
+.pjour {
+    transform: rotate(-90deg);
+}
+.tinst {
+  width:10px !important;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  padding: 0 5px 0 10px !important;
+  font-size: 14px;
 }
 .rec {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   width: 10px !important;
-  font-size: 12px;
+  font-size: 10px;
 }
 .divcrenau {
   position: absolute;

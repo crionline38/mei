@@ -2,7 +2,7 @@
             <li class="collection-item"><%= link_to " Profil", adherent_profile_path(@adherent), class: "fa fa-user-circle" %></li>
             <% if @adherent.years.include?(@saison) %>
               <% @adherent.students.each do |student| %>
-                <li class="collection-item"><%= link_to student.fullname, student_path, class: "fa fa-graduation-cap" %></li>
+                <li class="collection-item"><%= link_to student.fullname, student_path(student), class: "fa fa-graduation-cap" %></li>
               <% end %>
             <% end %>
           </ul>

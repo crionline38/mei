@@ -1,13 +1,10 @@
     <div class="myflex content-title">
       <p><%= render 'shared/logo' %> /
-        <%= @student.fullname %></p>
+        <%= link_to @student.fullname, @student %> / Nouvelle pré-inscription</p>
       <%= render 'shared/logout' %>
-    </div>
-    <div class="content-bandeau myflex">
-      <div>Pré-inscription à un cours</div>
-      <%= @student.fullname %>
     </div>
 
     <div class="content-form">
       <%= render 'form', cour: @cour %>
     </div>
+

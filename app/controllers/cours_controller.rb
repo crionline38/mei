@@ -16,18 +16,29 @@ class CoursController < ApplicationController
   # GET /cours/new
   def new
     @cour = Cour.new
+    @cour.plus = false
+    @cour.eco = false
     @instruments = Instrument.where(valide: true)
     @disciplines = []
+    @adherent = @student.user
   end
 
   # GET /cours/1/edit
   def edit
+    @instruments = Instrument.where(valide: true)
+    @disciplines = Discipline.joins(:instruments).where(instruments: {id: @cour.instrument.id})
+    @crenaus = Crenau.where(instrument: @cour.instrument.id).rewhere(discipline: @cour.discipline.id).rewhere(year: @saison).rewhere(valide: true).order(:jour)
+
   end
 
   # POST /cours
   # POST /cours.json
   def create
     @cour = Cour.new(cour_params)
+    @cour.plus = params['plus']
+    @cour.eco = params['eco']
+    @cour.comments = params["cour"]["comments"]
+    @cour.dispo = params['dispo']
       if @cour.save
         redirect_to @student, notice: 'Pré inscription au cour enregistrée.'
       else
@@ -39,6 +50,11 @@ class CoursController < ApplicationController
   # PATCH/PUT /cours/1.json
   def update
     if @cour.update(cour_params)
+      @cour.plus = params['plus']
+      @cour.eco = params['eco']
+      @cour.comments = params["cour"]["comments"]
+      @cour.dispo = params['dispo']
+      @cour.save
       redirect_to @student, notice: 'Inscription au cour modifié.'
     else
       render :edit
@@ -62,6 +78,6 @@ class CoursController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def cour_params
-      params.require(:cour).permit(:student_id, :discipline_id, :instrument_id, :user_id, :year_id)
+      params.require(:cour).permit(:student_id, :discipline_id, :instrument_id, :user_id, :year_id, :plus, :eco, :dispo, :comments)
     end
 end

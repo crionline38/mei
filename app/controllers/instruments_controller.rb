@@ -27,8 +27,10 @@ class InstrumentsController < ApplicationController
 
   def ajaxd
     @crenaus = Crenau.where(instrument: params["instrument_id"]).rewhere(discipline: params["discipline"]).rewhere(year: @saison).rewhere(valide: true).order(:jour)
-    render :layout => false
-    p @crenaus
+    @cour = Cour.new
+    @cour.plus = false
+    @cour.eco = false
+    render "_ajaxd", :layout => false
   end
 
   def new

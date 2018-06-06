@@ -1,10 +1,9 @@
+<div class="myflex content-title">
+  <p><%= render 'shared/logo' %> / <%= link_to "Saisons", years_path %> / Modifier saison</p>
+  <%= render 'shared/logout' %>
+</div>
 <div class="row back rowshadow">
-  <%= render 'shared/marge' %>
-  <div class="content col s12 m9">
-    <div class="myflex content-title">
-      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / <%= link_to "Saisons", years_path %> / Modifier</p>
-      <h4></h4>
-    </div>
+  <div class="content col s12">
     <div class="row">
       <div class="content-form">
         <%= render 'form', year: @year %>

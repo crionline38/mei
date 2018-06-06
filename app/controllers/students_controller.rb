@@ -9,7 +9,6 @@ class StudentsController < ApplicationController
     else
       @students = Student.order('first_name')
     end
-    @students2 = Student.all
   end
 
   def show
@@ -33,7 +32,7 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    @adherent = current_user
+    @adherent = @student.user
   end
 
   def create

@@ -11,36 +11,46 @@
       <tr>
           <td></td>
           <td></td>
+          <td></td>
         <% (8..21).each do |i| %>
-          <td class="hrefer"><div class="hlabel"><%= i %>H</div></td>
-          <td class=""></td>
-          <td class=""></td>
-          <td class="minfin"><div class="hlabelfin"><%= "22H" if i== 21 %></div></td>
+          <td id='<%= "t0_P_#{i}_0" %>' class="htd hrefer"><div class="hlabel"><%= i %>H</div></td>
+          <td id='<%= "t0_P_#{i}_15" %>' class="htd"></td>
+          <td id='<%= "t0_P_#{i}_30" %>' class="htd"></td>
+          <td id='<%= "t0_P_#{i}_45" %>' class="htd minfin"><div class="hlabelfin"><%= "22H" if i== 21 %></div></td>
         <% end %>
       </tr>
-      <% (0..6).each do |j|
-        jour = @jours[j] %>
-        <tr>
-          <td rowspan="2" class ="tjour"><%= @jours[j] %></td>
-          <td class="rec">P</td>
-          <% (8..21).each do |i| %>
-            <td id='<%= "t#{j}_P_#{i}_0" %>' class="heureh"></td>
-            <td id='<%= "t#{j}_P_#{i}_15" %>' class="minh"></td>
-            <td id='<%= "t#{j}_P_#{i}_30" %>' class="minh"></td>
-            <td id='<%= "t#{j}_P_#{i}_45" %>' class="minh <%= "cfin" if i== 21 %>"></td>
-          <% end %>
-            <td id='<%= "t#{j}_P_22_0" %>' style="visibility: hidden;" class="heureh"></td>
-        </tr>
-        <tr>
-          <td class="rec">I</td>
-          <% (8..21).each do |i| %>
-            <td id='<%= "t#{j}_I_#{i}_0" %>' class="heure"></td>
-            <td id='<%= "t#{j}_I_#{i}_15" %>' class="min"></td>
-            <td id='<%= "t#{j}_I_#{i}_30" %>' class="min"></td>
-            <td id='<%= "t#{j}_I_#{i}_45" %>' class="min <%= "cfin" if i== 21 %>"></td>
-          <% end %>
-            <td id='<%= "t#{j}_I_22_0" %>' style="visibility: hidden;" class="heure"></td>
-        </tr>
+      <% (0..6).each do |j| %>
+
+            <td rowspan="<%= @colors.count*2+1 %>" class ="tjour  pjour"><%= @jours[j] %></td>
+
+        <% @colors.each do |key, color| %>
+          <% @cinstrument = Instrument.find(key) %>
+          <tr>
+            <td rowspan="2" class ="tinst" style="background-color: #<%= color %>;"><%= @cinstrument.name %></td>
+            <td class="rec" style="background-color: #<%= color %>;">P</td>
+            <% (8..21).each do |i| %>
+              <td id='<%= "t#{key}_#{j}_P_#{i}_0" %>' class="heureh"></td>
+              <td id='<%= "t#{key}_#{j}_P_#{i}_15" %>' class="minh"></td>
+              <td id='<%= "t#{key}_#{j}_P_#{i}_30" %>' class="minh"></td>
+              <td id='<%= "t#{key}_#{j}_P_#{i}_45" %>' class="minh <%= "cfin" if i== 21 %>"></td>
+            <% end %>
+              <td id='<%= "t#{key}_#{j}_P_22_0" %>' style="visibility: hidden;" class="heureh"></td>
+          </tr>
+          <tr>
+            <td class="rec" style="background-color: #<%= color %>;">I</td>
+            <% (8..21).each do |i| %>
+              <td id='<%= "t#{key}_#{j}_I_#{i}_0" %>' class="heure"></td>
+              <td id='<%= "t#{key}_#{j}_I_#{i}_15" %>' class="min"></td>
+              <td id='<%= "t#{key}_#{j}_I_#{i}_30" %>' class="min"></td>
+              <td id='<%= "t#{key}_#{j}_I_#{i}_45" %>' class="min <%= "cfin" if i== 21 %>"></td>
+            <% end %>
+              <td id='<%= "t#{key}_#{j}_I_22_0" %>' style="visibility: hidden;" class="heure"></td>
+          </tr>
+
+        <% end %>
+
+
+
       <% end %>
     </table>
   </div>
@@ -97,15 +107,15 @@
   <% @crenaus.each do |crenau|
     ms = (crenau.start.strftime("%M").to_i / 15).round * 15
     mhs = crenau.start.strftime("%H").to_i
-    ids = "t#{crenau.jour}_P_" + mhs.to_s + "_"+ ms.to_s
+    ids = "t#{crenau.instrument.id}_#{crenau.jour}_P_" + mhs.to_s + "_"+ ms.to_s
     soff = crenau.start.strftime("%M").to_i - ms
 
     mstop = (crenau.end.strftime("%M").to_i / 15).round * 15
     mhstop = crenau.end.strftime("%H").to_i
-    idstop = "t#{crenau.jour}_P_" + mhstop.to_s + "_"+ mstop.to_s
+    idstop = "t#{crenau.instrument.id}_#{crenau.jour}_P_" + mhstop.to_s + "_"+ mstop.to_s
     stopoff = crenau.end.strftime("%M").to_i - mstop %>
 
-    var height = document.body.querySelector("#t0_P_8_0").getBoundingClientRect().height;
+    var height = document.body.querySelector("#<%= ids %>").getBoundingClientRect().height;
     var x1 = document.body.querySelector("#<%= ids %>").offsetLeft;
     var x2 = document.body.querySelector("#<%= idstop %>").offsetLeft;
     var lenghtx = x2 - x1

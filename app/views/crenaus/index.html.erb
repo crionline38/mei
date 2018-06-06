@@ -9,7 +9,7 @@
   <div class="hcont">
     <table id= "crenautable" class="table-crenau">
       <tr>
-          <td></td>
+          <td class="hrefer"><div class="plabel"><%= link_to fa_icon('plus-circle'), new_adherent_crenau_path(@adherent), title: "Ajouter un créneau" %></div></td>
           <td></td>
         <% (8..21).each do |i| %>
           <td class="hrefer"><div class="hlabel"><%= i %>H</div></td>

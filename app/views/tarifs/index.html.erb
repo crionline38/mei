@@ -1,10 +1,9 @@
+<div class="myflex content-title">
+  <p><%= render 'shared/logo' %> / Tarifs</p>
+  <%= render 'shared/logout' %>
+</div>
 <div class="row back rowshadow">
-  <%= render 'shared/marge' %>
-  <div class="content col s12 m9">
-    <div class="myflex content-title">
-      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / Tarifs</p>
-      <h4><%= link_to fa_icon('plus-circle'), new_tarif_path, title: "Ajouter un tarif" if @auth %></h4>
-    </div>
+  <div class="content col s12">
     <div class="row">
       <div class="content-table">
         <table class="striped responsive-table">
@@ -14,7 +13,7 @@
               <th>+ de 20 ans</th>
               <th>9 - 20 ans</th>
               <th>6 - 8 ans</th>
-              <th></th>
+              <th class="right"><%= link_to fa_icon('plus-circle'), new_tarif_path, title: "Ajouter un tarif" if @auth %></th>
             </tr>
           </thead>
 

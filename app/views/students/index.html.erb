@@ -1,8 +1,5 @@
-<div class="row back rowshadow">
-  <%= render 'shared/marge' %>
-  <div class="content col s12 m9">
-    <div class="myflex content-title">
-      <p><%= link_to fa_icon('home'), adherent_path(@adherent) %> / Liste d'élèves TOUTES SAISONS</p>
+<div class="myflex content-title">
+  <p><%= render 'shared/logo' %> / Liste d'élèves TOUTES SAISONS</p>
       <%= form_tag adherent_students_path(current_user), method: :get do %>
         <%= text_field_tag :query,
           params[:query],
@@ -10,11 +7,15 @@
           placeholder: "Rechercher un élève"
         %>
       <% end %>
-      <h5></h5>
-    </div>
+  <%= render 'shared/logout' %>
+</div>
+
+<div class="row back rowshadow">
+  <div class="content col s12">
+
     <div class="content-table">
-<% p "*********************************"
-p @students %>
-   <%= render 'shared/studentslist' %>
+      <%= render 'shared/studentslist' %>
+    </div>
+  </div>
 </div>
 

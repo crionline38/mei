@@ -1,9 +1,10 @@
-<div class="title">
-  <h4><a href="#" onClick="history.go(-1);return true;">
-        <i class="fa fa-chevron-circle-left"></i></a></h4>
-  <h4>Modifier le cour de <%= @student.last_name %> <%= @cour.year.name %> </h4>
-  <h5></h5>
-</div>
-<div class="mycard">
-  <%= render 'form', cour: @cour %>
-</div>
+    <div class="myflex content-title">
+      <p><%= render 'shared/logo' %> /
+        <%= link_to @student.fullname, @student %> / Modifier pré-inscription</p>
+      <%= render 'shared/logout' %>
+    </div>
+
+    <div class="content-form">
+      <%= render 'form', cour: @cour %>
+    </div>
+

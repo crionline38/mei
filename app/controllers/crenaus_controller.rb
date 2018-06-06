@@ -6,11 +6,11 @@ class CrenausController < ApplicationController
   def index
     @colors = {}
     @instindex = {}
-    color ="100F0F"
+    color ="10FF0F"
     i = 0
     Instrument.where(valide:true).each do |instrument|
       color = (color.to_i(16) + 1600000).to_s(16)
-      @colors[instrument.id] = color + "7F"
+      @colors[instrument.id] = color + "9F"
       @instindex[instrument.id] = i
       i += 1
     end
