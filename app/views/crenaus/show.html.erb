@@ -1,47 +1,52 @@
-<p id="notice"><%= notice %></p>
+<div class="myflex content-title">
+  <p><%= render 'shared/logo' %> /
+    <%= link_to "Créneaux", adherent_crenaus_path(@adherent) %> / Edition</p>
 
-<p>
-  <strong>Prof:</strong>
-  <%= @crenau.user.fullname %>
-</p>
+  <%= render 'shared/logout' %>
+</div>
+    <%=  render 'ajax' %>
+<div class="tablestudent">
+  <div class="center">
+    Elèves inscrits sur ce crénau :
+  </div>
+  <% @cours.each do |cour|
+    @cour = cour %>
+        <%= render 'ajax' %>
+  <% end %>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<script type="text/javascript">
 
-<p>
-  <strong>Year:</strong>
-  <%= @crenau.year %>
-</p>
+ document.querySelector('#crenau_jour').addEventListener('change', function (ev) {
+      var url = "/adherent/" + <%= current_user.id  %> + "/crenaus/" + <%= @crenau.id %> + "/edit";
+      var url = "<%= adherent_crenau_ajax_path(current_user, @crenau) %>";
+console.log(url);
+    fetch(url)
+      .then(function(response) {
+        response.text().then(function(text) {
+          document.querySelector('#mycrenau').innerHTML = text;
 
-<p>
-  <strong>Valide:</strong>
-  <%= @crenau.valide %>
-</p>
-
-<p>
-  <strong>Discipline:</strong>
-  <%= @crenau.discipline %>
-</p>
-
-<p>
-  <strong>Instrument:</strong>
-  <%= @crenau.instrument %>
-</p>
-
-<p>
-  <strong>Jour:</strong>
-  <%= @crenau.jour %>
-</p>
-
-<p>
-  <strong>Recurence:</strong>
-  <%= @crenau.recurence %>
-</p>
-
-<p>
-  <strong>Start:</strong>
-  <%= @crenau.start %>
-</p>
-
-<p>
-  <strong>End:</strong>
-  <%= @crenau.end %>
-</p>
-
+        });
+      })
+    });
+</script>

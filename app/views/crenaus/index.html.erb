@@ -1,6 +1,5 @@
 <div class="myflex content-title">
   <p><%= render 'shared/logo' %> / Créneaux</p>
-  <%= link_to fa_icon('plus-circle'), new_adherent_crenau_path(@adherent), title: "Ajouter un créneau" %>
   <%= render 'shared/logout' %>
 </div>
 
@@ -123,7 +122,7 @@
     var duree = lenghtx + ((<%= stopoff %> - <%= soff %>) * width)+1;
     var inst = "<%= crenau.instrument.name %>";
     var cred = "<%= 'crenaured' unless crenau.valide %>"
-    var div='<a href="crenaus/<%= crenau.id %>/edit"><div class="divcrenau myflex2 myalign ' + cred + '" style="z-index:10; top: '+offtop+'px;left:'+min_start+'px;height:' + (height+1) + 'px;width:' + duree + 'px;background-color: #<%= @colors[crenau.instrument.id] %>;">'+inst+'</div></a>'
+    var div='<a href="crenaus/<%= crenau.id %>"><div class="divcrenau myflex2 myalign ' + cred + '" style="z-index:10; top: '+offtop+'px;left:'+min_start+'px;height:' + (height+1) + 'px;width:' + duree + 'px;background-color: #<%= @colors[crenau.instrument.id] %>;">'+inst+'</div></a>'
     <% if crenau.recurence != 3 %>
       document.body.querySelector("#<%= ids %>").insertAdjacentHTML( 'afterbegin',  div);
     <% end %>

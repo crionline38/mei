@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     get 'yes', to: 'students#yes'
     get 'querytwo', to: 'students#querytwo'
     get 'profile', to: "adherent#profile"
-    resources :crenaus
+    resources :crenaus do
+      get 'ajax', to: "crenaus#ajax"
+    end
   end
   resources :users, only: [] do
     resources :crenaus, only: [:create, :show, :update, :destroy]

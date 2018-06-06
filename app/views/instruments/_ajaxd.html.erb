@@ -4,10 +4,8 @@
     value = ""
   end
   tab = value.split(',')
-  tabmin = [0, 15, 30, 45]
 %>
 <input name="dispo" type="hidden" id="finput" value="<%= value %>" class="<%= tab.join(' ') %>">
-Créneaux disponibles ( P = Semaines Paires / I = Semaines impaires ) :
       <% @crenaus.each do |crenau|
         ms = (crenau.start.strftime("%M").to_i / 15).round * 15
         mhs = crenau.start.strftime("%H").to_i

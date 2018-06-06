@@ -1,5 +1,36 @@
+<div class="myflex content-title">
+  <p><%= render 'shared/logo' %> /</p>
+  <%= render 'shared/logout' %>
+</div>
 <div class="row back rowshadow">
-  <div class="content col s12">
+  <div class="col s3">
+    <div class="content-form">
+      <u><%= @adherent.function.name %></u>
+      <p><%= @adherent.address %><br/>
+        <% if @adherent.address2.length > 0 %>
+          <%= @adherent.address2 %><br/>
+        <% end %>
+        <%= @adherent.zipcode %> <%= @adherent.city %><br/><br/>
+        Email : <%= @adherent.email %><br/>
+        Téléphone : <%= @adherent.tel1 %><br/>
+        <% if @adherent.tel2 != "" %>
+          Téléphone 2 : <%= @adherent.tel2 %>
+        <% end %>
+      </p>
+      <%= link_to " Modifier", edit_adherent_path(current_user), class: "fa fa-pencil" %>
+    </div>
+
+    <div class="content-form">
+      <% if @adherent.years.include?(@saison) %>
+        Adhérent <%= @saison.name %></h1>
+      <% else %>
+        Non adhérent <%= @saison.name %></h1>
+        <%= link_to " Adhérer", new_adherent_adhesion_path(@adherent), class: "fa fa-plus-circle", data: { confirm: "Prendre l'adhésion #{@saison.name}?" } %>
+      <% end %>
+    </div>
+
+  </div>
+  <div class="content col s9">
       <%= render 'showprof' if @adherent.function.name == "Professeur" %>
       <%= render 'showadmin' if ["Bureau", "Admin"].include?(@adherent.function.name) %>
       <%= render 'showadherent' if @adherent.function.name == "Adhérent" %>

@@ -1,6 +1,6 @@
 <div class="myflex content-title">
   <p><%= render 'shared/logo' %> / Planning</p>
-  <%= link_to fa_icon('plus-circle'), new_adherent_crenau_path(@adherent), title: "Ajouter un créneau" %>
+
   <%= render 'shared/logout' %>
 </div>
 
@@ -9,7 +9,7 @@
   <div class="hcont">
     <table id= "crenautable" class="table-crenau">
       <tr>
-          <td></td>
+          <td class="hrefer"><div class="plabel"><%= link_to fa_icon('plus-circle'), new_adherent_crenau_path(@adherent), title: "Ajouter un créneau" %></div></td>
           <td></td>
           <td></td>
         <% (8..21).each do |i| %>

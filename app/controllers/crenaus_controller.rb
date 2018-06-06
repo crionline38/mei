@@ -1,6 +1,7 @@
 class CrenausController < ApplicationController
   before_action :set_crenau, only: [:show, :edit, :update, :destroy]
-  before_action :set_adherent, only: [:new, :edit, :index, :destroy]
+  before_action :set_adherent, only: [:new, :show, :edit, :index, :destroy]
+  skip_before_action :authenticate_user!, only: [:ajax, :ajaxd]
   # GET /crenaus
   # GET /crenaus.json
   def index
@@ -27,6 +28,12 @@ class CrenausController < ApplicationController
     # GET /crenaus/1
   # GET /crenaus/1.json
   def show
+    @usercollection = User.joins(:function).where("functions.name = 'Professeur'").order('first_name')
+    @instruments = Instrument.where(valide: true)
+    @disciplines = Discipline.joins(:instruments).where(instruments: {id: @crenau.instrument.id})
+    @cour = Cour.new
+    @crenaus = [@crenau]
+      @cours = Cour.where(instrument: @crenau.instrument.id).rewhere(discipline: @crenau.discipline.id).rewhere(year: @saison).reverse
   end
 
   # GET /crenaus/new
@@ -50,8 +57,10 @@ class CrenausController < ApplicationController
     @usercollection = User.joins(:function).where("functions.name = 'Professeur'").order('first_name')
     @instruments = Instrument.where(valide: true)
     @disciplines = Discipline.joins(:instruments).where(instruments: {id: @crenau.instrument.id})
-
-  end
+    @cour = Cour.new
+    @crenaus = [@crenau]
+      @cours = Cour.where(instrument: @crenau.instrument.id).rewhere(discipline: @crenau.discipline.id).rewhere(year: @saison).reverse
+end
 
   # POST /crenaus
   # POST /crenaus.json
@@ -83,7 +92,7 @@ class CrenausController < ApplicationController
     params["crenau"]["jour"] = @jours.find_index { |w| w == params["crenau"]["jour"] }
     @crenau.valide = params["crenau"]["valide"] == "true"
     if @crenau.update(crenau_params)
-      redirect_to adherent_crenaus_path(@adherent), notice: 'Creneau sauvegardé.'
+      redirect_to adherent_crenau_path(@adherent,@crenau), notice: 'Creneau sauvegardé.'
     else
       render :edit
     end
@@ -94,6 +103,12 @@ class CrenausController < ApplicationController
   def destroy
     @crenau.destroy
     redirect_to adherent_crenaus_path(@adherent), notice: 'Creneau effacé.'
+  end
+
+  def ajax
+    @crenaus = [Crenau.find(params[:crenau_id])]
+    @cour = Cour.new
+    render "_ajax", :layout => false
   end
 
   private

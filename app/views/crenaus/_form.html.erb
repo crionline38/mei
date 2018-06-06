@@ -1,37 +1,15 @@
 <%= simple_form_for [@adherent,@crenau], id: "test" do |f| %>
   <%= f.error_notification %>
-
-
-  <div class="form-inputs">
-    <div class="row nomargin">
-      <div class="col s12 m4 l2 center">
-        <%= f.association :user,  :input_html => { :class => "grandselect" }, collection: @usercollection, label_method: :fullname, label: false, selected: f.object.user.id %>
-      </div>
-      <div class="col s12 m4 l1 center">
-            <%= f.input :jour, label: false,  :input_html => { :class => "petitselect" } ,collection: @jours, selected: @jours[@crenau.jour] %>
-      </div>
-      <div class="col s12 m4 l1 myflex">
-            <%= f.text_field :start, value: crenau.start.strftime("%H:%M"), :class => "timepicker" %>
-            <%= f.text_field :end, value: crenau.end.strftime("%H:%M"), :class => "timepicker" %>
-      </div>
-      <div class="col s12 m3 l2 center">
-        <%= f.input :recurence, label: false,  :input_html => { :class => "grandselect" }, collection: @recurences, selected: @recurences[@crenau.recurence] %>
-      </div>
-      <div class="col s12 m3 l2 center">
-        <%= f.association :instrument, :input_html => { :class => "grandselect" }, label: false, collection: @instruments %>
-      </div>
-        <% crenau.id ? hid ="visible"  : hid = "hidden" %>
-      <div class="col s12 m3 l2 center" style="visibility: <%= hid %>;" id="dselect">
-        <%= f.association :discipline,  :input_html => { :class => "grandselect" }, label: false, collection: @disciplines %>
-      </div>
-
-    <div class="hidden">
-      <%= f.association :year, collection: [@saison], label: "Saison", selected: 1 %>
-    </div>
-
-    <div class="col s12 m3 l2 myflex">
-      <% if @auth %>
-            <div>
+  <div class="form-inputs ">
+    <table>
+      <tr>
+        <td>Professeur</td>
+        <td><%= f.association :user,  :input_html => { :class => "grandselect" }, collection: @usercollection, label_method: :fullname, label: false, selected: f.object.user.id %></td>
+        <td>Jour</td>
+        <td><%= f.input :jour, label: false,  :input_html => { :class => "petitselect" } ,collection: @jours, selected: @jours[@crenau.jour] %>
+        </td>
+        <td>
+          <% if @auth %>
               <div class="toutpetit">Validé</div>
 
               <div>
@@ -41,20 +19,50 @@
                 <label for="test5"></label>
                 <input value="<%= crenau.valide %>" type="hidden" name="crenau[valide]" id="crenau_valide">
               </div>
-            </div>
-      <% end %>
-      <button name="button" type="submit" class=""><%= fa_icon("save") %></button>
+          <% end %>
+        </td>
 
-<% end %>
-      <% if crenau.id %>
-        <%= link_to  adherent_crenau_path(@adherent, crenau), method: :delete, data: { confirm: "Supprimer le créneau?" } do fa_icon("trash-o") end%>
-      <% else %>
-        <p></p>
-      <% end %>
+      </tr>
+      <tr>
+        <td>Instrument</td>
+        <td><%= f.association :instrument, :input_html => { :class => "grandselect" }, label: false, collection: @instruments %></td>
+        <td>Récurrence</td>
+        <td>
+          <%= f.input :recurence, label: false,  :input_html => { :class => "grandselect" }, collection: @recurences, selected: @recurences[@crenau.recurence] %>
+
+        </td>
+        <td>
+          <% if crenau.id %>
+            <%= link_to  adherent_crenau_path(@adherent, crenau), method: :delete, data: { confirm: "Supprimer le créneau?" } do fa_icon("trash-o") end%>
+          <% end %>
+        </td>
+      </tr>
+        <% crenau.id ? hid ="visible"  : hid = "hidden" %>
+      <tr>
+        <td>Formule</td>
+        <td>
+          <div class="center" style="visibility: <%= hid %>;" id="dselect">
+            <%= f.association :discipline,  :input_html => { :class => "grandselect" }, label: false, collection: @disciplines %>
+          </div>
+        </td>
+        <td>Horaires</td>
+        <td>
+          <div>
+             De <%= f.text_field :start, value: crenau.start.strftime("%H:%M"), :class => "timepicker" %>
+             A <%= f.text_field :end, value: crenau.end.strftime("%H:%M"), :class => "timepicker" %>
+          </div>
+        </td>
+        <td>
+          <button name="button" type="submit" class=""><%= fa_icon("save") %></button>
+        </td>
+       </tr>
+    </table>
+    <div class="hidden">
+      <%= f.association :year, collection: [@saison], label: "Saison", selected: 1 %>
     </div>
-
   </div>
-</div>
+<% end %>
+
 
 <script type="text/javascript">
   const select = document.getElementById("crenau_discipline_id");

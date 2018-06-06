@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180604142322) do
+ActiveRecord::Schema.define(version: 20180327085335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,8 +31,6 @@ ActiveRecord::Schema.define(version: 20180604142322) do
     t.integer  "instrument_id"
     t.integer  "user_id"
     t.integer  "year_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
     t.boolean  "plus"
     t.boolean  "eco"
     t.string   "dispo"
@@ -44,6 +42,8 @@ ActiveRecord::Schema.define(version: 20180604142322) do
     t.integer  "recurencehyp"
     t.boolean  "soumettre"
     t.string   "comments"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["discipline_id"], name: "index_cours_on_discipline_id", using: :btree
     t.index ["instrument_id"], name: "index_cours_on_instrument_id", using: :btree
     t.index ["student_id"], name: "index_cours_on_student_id", using: :btree
